@@ -65,8 +65,13 @@ def create_mcp() -> FastMCP:
     return mcp
 
 
+mcp = create_mcp()
+# Streamable HTTP at /mcp (ChatGPT). path="/" + mount "/mcp" => POST /mcp
+mcp_http_app = mcp.http_app(transport="streamable-http", path="/")
+
+
 @asynccontextmanager
-async def lifespan(app: FastAPI):
+async def chartink_lifespan(app: FastAPI):
     configure_logging()
     settings = get_settings()
     logger.info("Starting {} v{}", settings.app_name, settings.app_version)
@@ -94,11 +99,20 @@ async def lifespan(app: FastAPI):
         logger.warning("Startup session setup failed (non-fatal): {}", exc)
 
     yield
+
     if refresh_task is not None:
         refresh_task.cancel()
         with contextlib.suppress(asyncio.CancelledError):
             await refresh_task
     logger.info("Shutting down {}", settings.app_name)
+
+
+@asynccontextmanager
+async def combined_lifespan(app: FastAPI):
+    """FastAPI + FastMCP lifespans (required for streamable-http /mcp)."""
+    async with chartink_lifespan(app):
+        async with mcp_http_app.lifespan(app):
+            yield
 
 
 def create_app() -> FastAPI:
@@ -107,7 +121,7 @@ def create_app() -> FastAPI:
         title=settings.app_name,
         version=settings.app_version,
         description="Production MCP server for Chartink scan intelligence",
-        lifespan=lifespan,
+        lifespan=combined_lifespan,
     )
     app.add_middleware(
         CORSMiddleware,
@@ -120,15 +134,11 @@ def create_app() -> FastAPI:
     app.include_router(health_router)
     app.include_router(atlas_router)
     app.include_router(webhook_router)
+    app.mount("/mcp", mcp_http_app)
     return app
 
 
 app = create_app()
-mcp = create_mcp()
-# Use SSE transport so MCP clients that expect `/sse` and `/messages/`
-# receive valid endpoints under our `/mcp` mount.
-mcp_app = mcp.http_app(transport="sse")
-app.mount("/mcp", mcp_app)
 
 
 if __name__ == "__main__":
