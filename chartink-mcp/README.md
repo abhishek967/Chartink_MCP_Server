@@ -177,27 +177,48 @@ Expected test output:
 ✓ Results returned
 ```
 
-## ChatGPT MCP Integration
+## ChatGPT / Claude MCP Integration
 
-Once deployed, connect ChatGPT to your MCP server:
+MCP URL (Streamable HTTP):
 
-1. Deploy to Render or Railway (see below)
-2. Note your public URL: `https://your-app.onrender.com/mcp`
-3. In ChatGPT → Settings → Connectors → Add MCP Server
-4. Enter the MCP endpoint URL
-5. ChatGPT can now call all Chartink tools
+```text
+https://your-app.onrender.com/mcp
+```
 
-For local testing with Claude Desktop, add to `claude_desktop_config.json`:
+### ChatGPT
+
+1. Settings → Connectors → Add MCP Server
+2. Paste the URL above (no trailing slash)
+
+### Claude (claude.ai or Desktop)
+
+This server does **not** implement OAuth. Chartink login is handled on the server via `CHARTINK_EMAIL` / `CHARTINK_PASSWORD`.
+
+- **Do not** enter an OAuth Client ID unless you added OAuth to this project yourself.
+- If Claude shows *"Couldn't register with … sign-in service"*, the connector is trying OAuth by mistake:
+  - Choose **No authentication** / leave OAuth fields **empty**, or
+  - Use **URL only** / **Streamable HTTP** transport with no auth.
+
+**Claude Desktop** (`claude_desktop_config.json`):
 
 ```json
 {
   "mcpServers": {
     "chartink": {
+      "type": "http",
       "url": "http://localhost:8000/mcp"
     }
   }
 }
 ```
+
+**Claude Code** (terminal):
+
+```bash
+claude mcp add --transport http chartink https://your-app.onrender.com/mcp
+```
+
+Do not pass `--client-id` unless this server exposes OAuth (it does not).
 
 ## Webhook Setup
 

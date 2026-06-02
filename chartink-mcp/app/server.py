@@ -66,8 +66,8 @@ def create_mcp() -> FastMCP:
 
 
 mcp = create_mcp()
-# Streamable HTTP at /mcp (ChatGPT). path="/" + mount "/mcp" => POST /mcp
-mcp_http_app = mcp.http_app(transport="streamable-http", path="/")
+# Streamable HTTP at /mcp (ChatGPT, Claude). Route is /mcp on the sub-app.
+mcp_http_app = mcp.http_app(transport="streamable-http", path="/mcp")
 
 
 @asynccontextmanager
@@ -122,6 +122,7 @@ def create_app() -> FastAPI:
         version=settings.app_version,
         description="Production MCP server for Chartink scan intelligence",
         lifespan=combined_lifespan,
+        redirect_slashes=False,
     )
     app.add_middleware(
         CORSMiddleware,
@@ -134,7 +135,8 @@ def create_app() -> FastAPI:
     app.include_router(health_router)
     app.include_router(atlas_router)
     app.include_router(webhook_router)
-    app.mount("/mcp", mcp_http_app)
+    # Mount at root so the MCP route is exactly /mcp (no /mcp/ trailing-slash redirect).
+    app.mount("", mcp_http_app)
     return app
 
 
