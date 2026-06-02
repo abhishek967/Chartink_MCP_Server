@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from collections.abc import Generator
 from functools import lru_cache
+from pathlib import Path
 
 from sqlalchemy import create_engine, event
 from sqlalchemy.engine import Engine
@@ -14,11 +15,14 @@ from storage.models import Base
 
 
 def _ensure_sqlite_directory(database_url: str) -> None:
-    if database_url.startswith("sqlite:///"):
-        db_path = database_url.replace("sqlite:///", "", 1)
-        path = PROJECT_ROOT / db_path if not db_path.startswith("/") else None
-        if path is not None:
-            path.parent.mkdir(parents=True, exist_ok=True)
+    if not database_url.startswith("sqlite:///"):
+        return
+    db_path = database_url.removeprefix("sqlite:///")
+    path = Path(db_path) if db_path.startswith("/") else PROJECT_ROOT / db_path
+    try:
+        path.parent.mkdir(parents=True, exist_ok=True)
+    except OSError:
+        pass  # config.resolve_sqlite_url already fell back to a writable path
 
 
 @event.listens_for(Engine, "connect")
@@ -32,7 +36,6 @@ def _set_sqlite_pragma(dbapi_connection, connection_record) -> None:  # noqa: AR
 def get_engine() -> Engine:
     settings = get_settings()
     _ensure_sqlite_directory(settings.database_url)
-    settings.cookies_file.parent.mkdir(parents=True, exist_ok=True)
     return create_engine(
         settings.database_url,
         connect_args={"check_same_thread": False},

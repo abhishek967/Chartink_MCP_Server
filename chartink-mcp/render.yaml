@@ -1,0 +1,22 @@
+# Render Blueprint — native Python web service (chartink-mcp subdirectory)
+services:
+  - type: web
+    name: chartink-mcp-server
+    runtime: python
+    rootDir: chartink-mcp
+    buildCommand: pip install -r requirements.txt && playwright install --with-deps chromium
+    startCommand: uvicorn app.server:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: CHARTINK_AUTO_LOGIN
+        value: "true"
+      - key: CHARTINK_STARTUP_AUTO_LOGIN
+        value: "true"
+      - key: COOKIES_FILE
+        value: data/cookies.json
+      - key: DATABASE_URL
+        value: sqlite:///data/chartink.db
+      - key: ENVIRONMENT
+        value: production
+      # Set in Render dashboard (secrets):
+      # CHARTINK_EMAIL, CHARTINK_PASSWORD, ATLAS_DEFAULT_DASHBOARD

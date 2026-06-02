@@ -4,12 +4,71 @@ from __future__ import annotations
 
 from functools import lru_cache
 from pathlib import Path
-from typing import Literal
+from typing import Literal, Self
 
-from pydantic import Field
+from loguru import logger
+from pydantic import Field, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
+
+
+def writable_data_dir() -> Path:
+    """Project data directory (always writable on Render native Python)."""
+    data = PROJECT_ROOT / "data"
+    data.mkdir(parents=True, exist_ok=True)
+    return data
+
+
+def resolve_writable_path(path: Path) -> Path:
+    """Use configured path when writable; otherwise fall back to PROJECT_ROOT/data."""
+    candidate = path if path.is_absolute() else PROJECT_ROOT / path
+    try:
+        candidate.parent.mkdir(parents=True, exist_ok=True)
+        probe = candidate.parent / ".write_probe"
+        probe.touch()
+        probe.unlink(missing_ok=True)
+        return candidate
+    except OSError as exc:
+        fallback = writable_data_dir() / candidate.name
+        logger.warning(
+            "Storage path {} not writable ({}); using {}",
+            candidate,
+            exc,
+            fallback,
+        )
+        fallback.parent.mkdir(parents=True, exist_ok=True)
+        return fallback
+
+
+def resolve_sqlite_url(url: str) -> str:
+    """Ensure SQLite file path is writable (avoids PermissionError on /app for native Render)."""
+    if not url.startswith("sqlite:///"):
+        return url
+
+    raw = url.removeprefix("sqlite:///")
+    if raw.startswith("/"):
+        db_path = Path(raw)
+        try:
+            db_path.parent.mkdir(parents=True, exist_ok=True)
+            probe = db_path.parent / ".write_probe"
+            probe.touch()
+            probe.unlink(missing_ok=True)
+            return url
+        except OSError as exc:
+            fallback = writable_data_dir() / db_path.name
+            logger.warning(
+                "SQLite path {} not writable ({}); using {}",
+                db_path,
+                exc,
+                fallback,
+            )
+            fallback.parent.mkdir(parents=True, exist_ok=True)
+            return f"sqlite:///{fallback}"
+
+    full = PROJECT_ROOT / raw
+    full.parent.mkdir(parents=True, exist_ok=True)
+    return f"sqlite:///{full}"
 
 
 class Settings(BaseSettings):
@@ -69,6 +128,13 @@ class Settings(BaseSettings):
         default="5IvaWealth Advanced",
         alias="ATLAS_DEFAULT_DASHBOARD",
     )
+
+    @model_validator(mode="after")
+    def resolve_storage_paths(self) -> Self:
+        self.cookies_file = resolve_writable_path(self.cookies_file)
+        self.findings_file = resolve_writable_path(self.findings_file)
+        self.database_url = resolve_sqlite_url(self.database_url)
+        return self
 
 
 @lru_cache
