@@ -43,6 +43,8 @@ def health_detail(
         "service": settings.app_name,
         "version": settings.app_version,
         "environment": settings.environment,
+        "data_dir": str(settings.data_dir),
+        "cookies_file": str(settings.cookies_file),
         "authenticated": authenticated,
         "playwright_ready": playwright_ready,
         "chartink_credentials_set": bool(

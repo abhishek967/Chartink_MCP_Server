@@ -14,10 +14,8 @@ services:
         value: "true"
       - key: CHARTINK_STARTUP_AUTO_LOGIN
         value: "true"
-      - key: COOKIES_FILE
-        value: data/cookies.json
-      - key: DATABASE_URL
-        value: sqlite:///data/chartink.db
+      - key: DATA_DIR
+        value: /tmp
       - key: ENVIRONMENT
         value: production
       # Set in Render dashboard (secrets):

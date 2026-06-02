@@ -28,8 +28,7 @@ class AuthenticationError(Exception):
 
 NOT_AUTHENTICATED_MESSAGE = (
     "Chartink session is not authenticated. Set CHARTINK_EMAIL and CHARTINK_PASSWORD "
-    "on the server (CHARTINK_AUTO_LOGIN=true) and POST /refresh-session, or upload "
-    "cookies to COOKIES_FILE."
+    "on the server (CHARTINK_AUTO_LOGIN=true) and POST /refresh-session."
 )
 
 

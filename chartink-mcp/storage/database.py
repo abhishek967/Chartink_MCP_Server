@@ -10,19 +10,15 @@ from sqlalchemy import create_engine, event
 from sqlalchemy.engine import Engine
 from sqlalchemy.orm import Session, sessionmaker
 
-from app.config import PROJECT_ROOT, get_settings
+from app.config import get_settings
 from storage.models import Base
 
 
 def _ensure_sqlite_directory(database_url: str) -> None:
     if not database_url.startswith("sqlite:///"):
         return
-    db_path = database_url.removeprefix("sqlite:///")
-    path = Path(db_path) if db_path.startswith("/") else PROJECT_ROOT / db_path
-    try:
-        path.parent.mkdir(parents=True, exist_ok=True)
-    except OSError:
-        pass  # config.resolve_sqlite_url already fell back to a writable path
+    db_path = Path(database_url.removeprefix("sqlite:///"))
+    db_path.parent.mkdir(parents=True, exist_ok=True)
 
 
 @event.listens_for(Engine, "connect")
