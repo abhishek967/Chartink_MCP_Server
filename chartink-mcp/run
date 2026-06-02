@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Run any command with the project virtualenv Python (no global `python` required).
+set -euo pipefail
+ROOT="$(cd "$(dirname "$0")" && pwd)"
+PY="$ROOT/.venv/bin/python"
+
+if [[ ! -x "$PY" ]]; then
+  echo "Virtualenv not found. Run: ./setup.sh"
+  exit 1
+fi
+
+exec "$PY" "$@"

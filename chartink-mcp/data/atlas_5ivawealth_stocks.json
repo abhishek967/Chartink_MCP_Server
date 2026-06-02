@@ -1,0 +1,3790 @@
+{
+  "dashboard_id": 440060,
+  "dashboard_name": "5IvaWealth Advanced",
+  "dashboard_url": "https://chartink.com/atlas",
+  "widget_count": 12,
+  "widgets_executed": 12,
+  "widgets": [
+    {
+      "widget_id": 4540243,
+      "widget_name": "volume 3X on W",
+      "symbol_count": 19,
+      "symbols": [
+        "PTCIL",
+        "SAFARI",
+        "RUBICON",
+        "ELECTHERM",
+        "JSLL",
+        "HLEGLAS",
+        "SBIETFIT",
+        "SKMEGGPROD",
+        "IFGLEXPOR",
+        "SPORTKING",
+        "AJMERA",
+        "ALKALI",
+        "NIITLTD",
+        "PASUPTAC",
+        "NSLNISP",
+        "GSEC10YEAR",
+        "GTECJAINX",
+        "SABEVENTS",
+        "KSHITIJPOL"
+      ],
+      "scan_link": "scanlink:49db52c610037d6f4cb76858a4312409"
+    },
+    {
+      "widget_id": 4540242,
+      "widget_name": "Volume 3x  D",
+      "symbol_count": 38,
+      "symbols": [
+        "BALAMINES",
+        "COFFEEDAY",
+        "RUBICON",
+        "ELECTHERM",
+        "VENUSREM",
+        "BIRLACABLE",
+        "SKMEGGPROD",
+        "NIITLTD",
+        "ALKYLAMINE",
+        "NSLNISP",
+        "GTECJAINX",
+        "RUBYMILLS",
+        "SVPGLOB",
+        "GIPCL",
+        "GPTHEALTH",
+        "ACMESOLAR",
+        "HLEGLAS",
+        "CONCORDBIO",
+        "IFGLEXPOR",
+        "NEWGEN",
+        "MBLINFRA",
+        "NMDC",
+        "NPST",
+        "ROUTE",
+        "EMKAY",
+        "NEXT50",
+        "MASTEK",
+        "TECH",
+        "TATAELXSI",
+        "LOWVOL1",
+        "SBIETFIT",
+        "TOP20",
+        "JMFINANCIL",
+        "INFOBEAN",
+        "CELLO",
+        "GSLSU",
+        "ZENSARTECH",
+        "JSLL"
+      ],
+      "scan_link": "scanlink:f22d292fd4995ab48cb3364f13331575"
+    },
+    {
+      "widget_id": 4540235,
+      "widget_name": "EPS and Sales Growth",
+      "symbol_count": 103,
+      "symbols": [
+        "RUSTOMJEE",
+        "WEL",
+        "KICL",
+        "KERNEX",
+        "UNIMECH",
+        "WEALTH",
+        "MADRASFERT",
+        "LGEINDIA",
+        "ICEMAKE",
+        "SOLEX",
+        "WELENT",
+        "SOBHA",
+        "NEULANDLAB",
+        "JASH",
+        "VBL",
+        "KIRLPNU",
+        "MARSONS",
+        "GODREJPROP",
+        "BHEL",
+        "PTCIL",
+        "SMLMAH",
+        "UEL",
+        "ALGOQUANT",
+        "HINDCOPPER",
+        "MIDHANI",
+        "MMTC",
+        "MAPMYINDIA",
+        "UPL",
+        "VIKRAN",
+        "SPECTRUM",
+        "AJAXENGG",
+        "IBULLSLTD",
+        "RAYMONDREL",
+        "SANGHVIMOV",
+        "DATAPATTNS",
+        "ARIHANTSUP",
+        "ATLANTAELE",
+        "AEGISLOG",
+        "RAILTEL",
+        "ASTRAMICRO",
+        "FINPIPE",
+        "HAL",
+        "SRM",
+        "RUPA",
+        "SHARDACROP",
+        "AJMERA",
+        "GODREJIND",
+        "DOLPHIN",
+        "MIDWESTLTD",
+        "TCC",
+        "ANTHEM",
+        "GPIL",
+        "IRCON",
+        "CLSEL",
+        "KPEL",
+        "PARAS",
+        "PURVA",
+        "VENUSREM",
+        "ASIANENE",
+        "JNKINDIA",
+        "HFCL",
+        "EPACKPEB",
+        "WEBELSOLAR",
+        "DOLLAR",
+        "LLOYDSENT",
+        "REFEX",
+        "ICICIPRULI",
+        "GPTINFRA",
+        "INDOBORAX",
+        "POWERMECH",
+        "COALINDIA",
+        "UTLSOLAR",
+        "CRIZAC",
+        "HONDAPOWER",
+        "DALMIASUG",
+        "IZMO",
+        "FCL",
+        "GMDCLTD",
+        "WABAG",
+        "JTLIND",
+        "BEL",
+        "ONESOURCE",
+        "TARC",
+        "CENTUM",
+        "63MOONS",
+        "TMPV",
+        "NIBE",
+        "IDEAFORGE",
+        "BOSCH-HCIL",
+        "KALPATARU",
+        "GSPCROP",
+        "BEML",
+        "DREDGECORP",
+        "ZYDUSWELL",
+        "AMBER",
+        "SHRIRAMPPS",
+        "SPARC",
+        "SIGNATURE",
+        "BAJEL",
+        "SIGMAADV",
+        "VINDHYATEL",
+        "PRINCEPIPE",
+        "VADILALIND"
+      ],
+      "scan_link": "scanlink:ba7eec11de996111cd4922089801fffe"
+    },
+    {
+      "widget_id": 4540236,
+      "widget_name": "Equimantum 90 Days Report",
+      "symbol_count": 328,
+      "symbols": [
+        "STLTECH",
+        "SWANDEF",
+        "DEEDEV",
+        "GVPIL",
+        "HFCL",
+        "MTARTECH",
+        "UFBL",
+        "BLISSGVS",
+        "AEROFLEX",
+        "CPPLUS",
+        "SPORTKING",
+        "SIGMAADV",
+        "POWERINDIA",
+        "SAKAR",
+        "GRWRHITECH",
+        "CONFIPET",
+        "BAJAJCON",
+        "BBOX",
+        "NINSYS",
+        "NOVARTIND",
+        "KOVAI",
+        "WHEELS",
+        "E2E",
+        "PRECWIRE",
+        "SCHNEIDER",
+        "INDOTECH",
+        "PARACABLES",
+        "WELCORP",
+        "VENUSREM",
+        "TDPOWERSYS",
+        "FCL",
+        "IDEAFORGE",
+        "SUVEN",
+        "GVT&D",
+        "APARINDS",
+        "ACUTAAS",
+        "NGLFINE",
+        "IBULLSLTD",
+        "APOLLO",
+        "SHILPAMED",
+        "IOLCP",
+        "ROSSTECH",
+        "ANTELOPUS",
+        "SASKEN",
+        "SKYGOLD",
+        "ADANIENSOL",
+        "YASHO",
+        "UNIVCABLES",
+        "ARVIND",
+        "SBCL",
+        "THERMAX",
+        "APOLLOPIPE",
+        "AVALON",
+        "JNKINDIA",
+        "ADANIPOWER",
+        "SYRMA",
+        "VINDHYATEL",
+        "CGPOWER",
+        "SANSERA",
+        "HIRECT",
+        "KIRLOSENG",
+        "DATAPATTNS",
+        "BALAMINES",
+        "KAPSTON",
+        "APEX",
+        "KRN",
+        "CENTUM",
+        "JINDALSAW",
+        "ADANIGREEN",
+        "ENRIN",
+        "EBGNG",
+        "ATHERENERG",
+        "SEAMECLTD",
+        "NITINSPIN",
+        "BHEL",
+        "ACMESOLAR",
+        "PAISALO",
+        "CEMPRO",
+        "SATIN",
+        "SPARC",
+        "LUXIND",
+        "MAYURUNIQ",
+        "WALCHANNAG",
+        "RPTECH",
+        "DIACABS",
+        "NELCAST",
+        "DSSL",
+        "LLOYDSME",
+        "SUNFLAG",
+        "VTL",
+        "MANINDS",
+        "ABB",
+        "INDSWFTLAB",
+        "LLOYDSENGG",
+        "PREMIERENE",
+        "HARDWYN",
+        "CARYSIL",
+        "SGFIN",
+        "SOLARINDS",
+        "RISHABH",
+        "NETWEB",
+        "KRISHANA",
+        "BANDHANBNK",
+        "HONASA",
+        "SCI",
+        "NEOGEN",
+        "KIRLPNU",
+        "ADVENZYMES",
+        "STEELXIND",
+        "ADFFOODS",
+        "ASTRAMICRO",
+        "APCOTEXIND",
+        "INDOBORAX",
+        "RAIN",
+        "SHAILY",
+        "NRBBEARING",
+        "CUMMINSIND",
+        "SINDHUTRAD",
+        "BSE",
+        "AYMSYNTEX",
+        "CUPID",
+        "MARKSANS",
+        "GOKULAGRO",
+        "J&KBANK",
+        "DEEPINDS",
+        "KTKBANK",
+        "SAIL",
+        "WOCKPHARMA",
+        "MBAPL",
+        "ADANIENT",
+        "RRKABEL",
+        "TRITURBINE",
+        "UNIPARTS",
+        "ELGIEQUIP",
+        "SIGNPOST",
+        "ICIL",
+        "NLCINDIA",
+        "STYLAMIND",
+        "JAYBARMARU",
+        "GESHIP",
+        "VEDL",
+        "ATGL",
+        "AGIIL",
+        "AZAD",
+        "STEELCAS",
+        "POLYCAB",
+        "KERNEX",
+        "GLAND",
+        "RAMRAT",
+        "GRANULES",
+        "VIJAYA",
+        "SONACOMS",
+        "TIINDIA",
+        "CHENNPETRO",
+        "DIVGIITTS",
+        "AARTIIND",
+        "PITTIENG",
+        "DHANBANK",
+        "YATHARTH",
+        "IDEA",
+        "SENORES",
+        "TMB",
+        "BHARATFORG",
+        "RPSGVENT",
+        "HAPPYFORGE",
+        "OFSS",
+        "INOXINDIA",
+        "WABAG",
+        "SAILIFE",
+        "VIYASH",
+        "PARAS",
+        "FINCABLES",
+        "HSCL",
+        "LAURUSLABS",
+        "INNOVACAP",
+        "SBC",
+        "SIEMENS",
+        "SAMMAANCAP",
+        "BELRISE",
+        "BALRAMCHIN",
+        "WSTCSTPAPR",
+        "ADANIPORTS",
+        "TIPSMUSIC",
+        "SPAL",
+        "GOLDIAM",
+        "VENUSPIPES",
+        "SOMANYCERA",
+        "SANDHAR",
+        "MOTHERSON",
+        "BHARATWIRE",
+        "ZENTEC",
+        "TALBROAUTO",
+        "CARBORUNIV",
+        "SIS",
+        "CEIGALL",
+        "ANGELONE",
+        "IMFA",
+        "GALAPREC",
+        "TIIL",
+        "AMBER",
+        "NAM-INDIA",
+        "ABSLAMC",
+        "PIXTRANS",
+        "KINGFA",
+        "PRIVISCL",
+        "ASHIANA",
+        "HINDALCO",
+        "ANTHEM",
+        "MSPL",
+        "THANGAMAYL",
+        "AUROPHARMA",
+        "SANSTAR",
+        "RATNAMANI",
+        "KIMS",
+        "ENGINERSIN",
+        "ASTERDM",
+        "STARHEALTH",
+        "SJS",
+        "VISHNU",
+        "PTC",
+        "RADICO",
+        "KEI",
+        "NATIONALUM",
+        "GMDCLTD",
+        "NEULANDLAB",
+        "AKUMS",
+        "SHRIPISTON",
+        "SURYODAY",
+        "MIRCELECTR",
+        "STAR",
+        "JSWENERGY",
+        "ALIVUS",
+        "MAHABANK",
+        "GOODLUCK",
+        "WELSPUNLIV",
+        "IFCI",
+        "TIMKEN",
+        "MCX",
+        "ROLEXRINGS",
+        "V2RETAIL",
+        "AEROENTER",
+        "IGPL",
+        "JPPOWER",
+        "MAHASTEEL",
+        "BHARATSE",
+        "GRINDWELL",
+        "USHAMART",
+        "CRAFTSMAN",
+        "MANORAMA",
+        "AIAENG",
+        "PRUDENT",
+        "NMDC",
+        "IGIL",
+        "CESC",
+        "MIDHANI",
+        "RKFORGE",
+        "JAYNECOIND",
+        "NAVINFLUOR",
+        "ANANDRATHI",
+        "SANGAMIND",
+        "RATNAVEER",
+        "LUMAXTECH",
+        "ZYDUSWELL",
+        "ARFIN",
+        "GRAPHITE",
+        "KPIL",
+        "PGIL",
+        "TATASTEEL",
+        "JBCHEPHARM",
+        "APOLLOHOSP",
+        "FINEORG",
+        "GAEL",
+        "JSWSTEEL",
+        "BIOCON",
+        "GRASIM",
+        "TFCILTD",
+        "ATULAUTO",
+        "KARURVYSYA",
+        "MUKANDLTD",
+        "COALINDIA",
+        "EMCURE",
+        "GPTINFRA",
+        "SILVERTUC",
+        "DREDGECORP",
+        "FEDERALBNK",
+        "BAJAJ-AUTO",
+        "KENNAMET",
+        "MEDPLUS",
+        "OIL",
+        "GRSE",
+        "TORNTPHARM",
+        "VBL",
+        "SUNPHARMA",
+        "MARICO",
+        "NYKAA",
+        "NESTLEIND",
+        "SCHAEFFLER",
+        "RBLBANK",
+        "ONEPOINT",
+        "ESABINDIA",
+        "INDIAGLYCO",
+        "DIVISLAB",
+        "XPROINDIA",
+        "FIEMIND",
+        "MUFIN",
+        "IRB",
+        "PNBHOUSING",
+        "CARERATING",
+        "EQUITASBNK",
+        "ANURAS",
+        "SANDUMA",
+        "OBEROIRLTY",
+        "MANAPPURAM",
+        "FEDFINA",
+        "LUMAXIND",
+        "INDUSTOWER",
+        "HINDZINC",
+        "EICHERMOT",
+        "HINDCOPPER",
+        "ABCAPITAL",
+        "MUTHOOTMF",
+        "INDUSINDBK",
+        "SOUTHBANK",
+        "AUBANK",
+        "RICOAUTO",
+        "AURUM",
+        "WAAREEINDO",
+        "RAJRATAN"
+      ],
+      "scan_link": "scanlink:6a5def71f2f6e0a14a1cdf8f6f5e56eb"
+    },
+    {
+      "widget_id": 4540234,
+      "widget_name": "Trend Template",
+      "symbol_count": 175,
+      "symbols": [
+        "STLTECH",
+        "SWANDEF",
+        "DEEDEV",
+        "GVPIL",
+        "HFCL",
+        "MTARTECH",
+        "UFBL",
+        "BLISSGVS",
+        "AEROFLEX",
+        "SPORTKING",
+        "SIGMAADV",
+        "POWERINDIA",
+        "SAKAR",
+        "GRWRHITECH",
+        "BAJAJCON",
+        "BBOX",
+        "NOVARTIND",
+        "KOVAI",
+        "WHEELS",
+        "PRECWIRE",
+        "SCHNEIDER",
+        "WELCORP",
+        "VENUSREM",
+        "TDPOWERSYS",
+        "FCL",
+        "IDEAFORGE",
+        "GVT&D",
+        "APARINDS",
+        "ACUTAAS",
+        "NGLFINE",
+        "ROSSTECH",
+        "SKYGOLD",
+        "ADANIENSOL",
+        "UNIVCABLES",
+        "ARVIND",
+        "THERMAX",
+        "AVALON",
+        "ADANIPOWER",
+        "SYRMA",
+        "SANSERA",
+        "KIRLOSENG",
+        "KAPSTON",
+        "DATAPATTNS",
+        "APEX",
+        "KRN",
+        "ADANIGREEN",
+        "SEAMECLTD",
+        "ATHERENERG",
+        "NITINSPIN",
+        "BHEL",
+        "PAISALO",
+        "SATIN",
+        "SPARC",
+        "MAYURUNIQ",
+        "RPTECH",
+        "DSSL",
+        "LLOYDSME",
+        "VTL",
+        "MANINDS",
+        "ABB",
+        "INDSWFTLAB",
+        "HARDWYN",
+        "RISHABH",
+        "NETWEB",
+        "HONASA",
+        "SCI",
+        "SHAILY",
+        "CUMMINSIND",
+        "INDOBORAX",
+        "BSE",
+        "CUPID",
+        "GOKULAGRO",
+        "J&KBANK",
+        "KTKBANK",
+        "MBAPL",
+        "SAIL",
+        "RRKABEL",
+        "TRITURBINE",
+        "UNIPARTS",
+        "NLCINDIA",
+        "STYLAMIND",
+        "GESHIP",
+        "VEDL",
+        "AGIIL",
+        "AZAD",
+        "STEELCAS",
+        "POLYCAB",
+        "KERNEX",
+        "GRANULES",
+        "VIJAYA",
+        "SONACOMS",
+        "CHENNPETRO",
+        "DIVGIITTS",
+        "AARTIIND",
+        "DHANBANK",
+        "BHARATFORG",
+        "IDEA",
+        "SENORES",
+        "TMB",
+        "INOXINDIA",
+        "HAPPYFORGE",
+        "SAILIFE",
+        "VIYASH",
+        "PARAS",
+        "FINCABLES",
+        "HSCL",
+        "LAURUSLABS",
+        "SBC",
+        "SIEMENS",
+        "ADANIPORTS",
+        "MOTHERSON",
+        "BHARATWIRE",
+        "CEIGALL",
+        "ANGELONE",
+        "IMFA",
+        "NAM-INDIA",
+        "ABSLAMC",
+        "KINGFA",
+        "PRIVISCL",
+        "ASHIANA",
+        "HINDALCO",
+        "SJS",
+        "THANGAMAYL",
+        "AUROPHARMA",
+        "SANSTAR",
+        "ENGINERSIN",
+        "ASTERDM",
+        "VISHNU",
+        "RADICO",
+        "KEI",
+        "NATIONALUM",
+        "GMDCLTD",
+        "NEULANDLAB",
+        "MIRCELECTR",
+        "SHRIPISTON",
+        "SURYODAY",
+        "STAR",
+        "MAHABANK",
+        "IFCI",
+        "MCX",
+        "MAHASTEEL",
+        "GRINDWELL",
+        "USHAMART",
+        "CRAFTSMAN",
+        "AIAENG",
+        "NMDC",
+        "JAYNECOIND",
+        "NAVINFLUOR",
+        "SANGAMIND",
+        "ANANDRATHI",
+        "RATNAVEER",
+        "LUMAXTECH",
+        "GRAPHITE",
+        "TATASTEEL",
+        "JBCHEPHARM",
+        "GAEL",
+        "JSWSTEEL",
+        "TFCILTD",
+        "KARURVYSYA",
+        "EMCURE",
+        "SILVERTUC",
+        "DREDGECORP",
+        "FEDERALBNK",
+        "KENNAMET",
+        "TORNTPHARM",
+        "NYKAA",
+        "RBLBANK",
+        "ONEPOINT",
+        "PNBHOUSING",
+        "EQUITASBNK",
+        "ANURAS",
+        "MANAPPURAM",
+        "HINDZINC",
+        "MUTHOOTMF",
+        "AUBANK"
+      ],
+      "scan_link": "scanlink:07f0e4ebf9006f6521d0efaca165cae0"
+    },
+    {
+      "widget_id": 4540237,
+      "widget_name": "Equimantum 30 Days Report",
+      "symbol_count": 366,
+      "symbols": [
+        "ARIHANT",
+        "AHLWEST",
+        "STLTECH",
+        "NOVARTIND",
+        "MODISONLTD",
+        "SIGMAADV",
+        "OMAXAUTO",
+        "KOVAI",
+        "HFCL",
+        "BBOX",
+        "FCL",
+        "BALAMINES",
+        "DEEDEV",
+        "IDEAFORGE",
+        "SASKEN",
+        "GVPIL",
+        "BLISSGVS",
+        "PARACABLES",
+        "SHAILY",
+        "CEMPRO",
+        "NINSYS",
+        "VINDHYATEL",
+        "APOLLO",
+        "E2E",
+        "KERNEX",
+        "SOFTTECH",
+        "BHAGYANGR",
+        "UFBL",
+        "RAIN",
+        "MTARTECH",
+        "GRWRHITECH",
+        "INDOTECH",
+        "IDEA",
+        "UNIVCABLES",
+        "IOLCP",
+        "MCLEODRUSS",
+        "WHEELS",
+        "DSSL",
+        "CPPLUS",
+        "YASHO",
+        "WOCKPHARMA",
+        "SAKAR",
+        "SBCL",
+        "SUVEN",
+        "PASUPTAC",
+        "WELINV",
+        "SILVERTUC",
+        "ANTELOPUS",
+        "SPARC",
+        "SUNFLAG",
+        "SANDHAR",
+        "RRKABEL",
+        "PRECOT",
+        "INDOBORAX",
+        "SPORTKING",
+        "VENUSREM",
+        "STEELXIND",
+        "AVALON",
+        "AEROFLEX",
+        "MARKSANS",
+        "ADANIENT",
+        "TRITURBINE",
+        "BIRLACABLE",
+        "CONFIPET",
+        "SANSTAR",
+        "SKYGOLD",
+        "IBULLSLTD",
+        "STYLAMIND",
+        "SATIN",
+        "ZIMLAB",
+        "DIACABS",
+        "MIRCELECTR",
+        "MAYURUNIQ",
+        "BHEL",
+        "ARVIND",
+        "OFSS",
+        "LLOYDSENGG",
+        "VIJAYA",
+        "WELCORP",
+        "ACUTAAS",
+        "ADANIGREEN",
+        "APCOTEXIND",
+        "JAYBARMARU",
+        "ADVENZYMES",
+        "SIS",
+        "GLAND",
+        "SHILPAMED",
+        "NETWEB",
+        "ICIL",
+        "DREDGECORP",
+        "DHANBANK",
+        "KIRLPNU",
+        "CUPID",
+        "V2RETAIL",
+        "TALBROAUTO",
+        "SANSERA",
+        "NEOGEN",
+        "TDPOWERSYS",
+        "WALCHANNAG",
+        "MARINE",
+        "HIRECT",
+        "CARYSIL",
+        "HSCL",
+        "KOPRAN",
+        "INDSWFTLAB",
+        "SOLARINDS",
+        "LAURUSLABS",
+        "BAJAJCON",
+        "RPTECH",
+        "ADANIENSOL",
+        "POWERINDIA",
+        "ASTRAMICRO",
+        "NRBBEARING",
+        "NITINSPIN",
+        "ADFFOODS",
+        "PAISALO",
+        "VIYASH",
+        "THERMAX",
+        "ENRIN",
+        "SYRMA",
+        "NGLFINE",
+        "ADANIPOWER",
+        "SAIL",
+        "GRANULES",
+        "JNKINDIA",
+        "SJS",
+        "BANDHANBNK",
+        "GRINDWELL",
+        "AMBIKCO",
+        "HONASA",
+        "AYMSYNTEX",
+        "SOMANYCERA",
+        "SURYODAY",
+        "CGPOWER",
+        "IFCI",
+        "VEDL",
+        "CRAFTSMAN",
+        "CENTUM",
+        "ATGL",
+        "MANAPPURAM",
+        "POLYCAB",
+        "BIOCON",
+        "RUBYMILLS",
+        "KENNAMET",
+        "SAILIFE",
+        "INNOVACAP",
+        "NLCINDIA",
+        "MOTHERSON",
+        "UNIPARTS",
+        "SAMMAANCAP",
+        "SENORES",
+        "APARINDS",
+        "GVT&D",
+        "ADANIPORTS",
+        "MSPL",
+        "DATAPATTNS",
+        "AIAENG",
+        "TIPSMUSIC",
+        "GALAPREC",
+        "KIRLOSENG",
+        "SANGAMIND",
+        "SADHNANIQ",
+        "WELSPUNLIV",
+        "SCHNEIDER",
+        "GRASIM",
+        "PRECWIRE",
+        "GOKULAGRO",
+        "HARDWYN",
+        "VBL",
+        "CEIGALL",
+        "MENONBE",
+        "ATHERENERG",
+        "KINGFA",
+        "LLOYDSME",
+        "NAVINFLUOR",
+        "WABAG",
+        "SINDHUTRAD",
+        "TIINDIA",
+        "ROSSTECH",
+        "RISHABH",
+        "SBC",
+        "BSE",
+        "MIDHANI",
+        "CUMMINSIND",
+        "BALRAMCHIN",
+        "SGFIN",
+        "NEULANDLAB",
+        "HINDALCO",
+        "NAHARSPING",
+        "VTL",
+        "VENUSPIPES",
+        "RATNAVEER",
+        "ACMESOLAR",
+        "KRISHANA",
+        "USHAMART",
+        "CHENNPETRO",
+        "RADICO",
+        "KIMS",
+        "JSWENERGY",
+        "SIGNPOST",
+        "GHCLTEXTIL",
+        "RBLBANK",
+        "THANGAMAYL",
+        "KAPSTON",
+        "CARBORUNIV",
+        "NESTLEIND",
+        "KEI",
+        "DEEPINDS",
+        "SALSTEEL",
+        "MAHABANK",
+        "AZAD",
+        "TMB",
+        "J&KBANK",
+        "SOUTHBANK",
+        "FEDFINA",
+        "MUFIN",
+        "PNBHOUSING",
+        "VISHNU",
+        "ASHIANA",
+        "XPROINDIA",
+        "COALINDIA",
+        "YATHARTH",
+        "STAR",
+        "GOODLUCK",
+        "NAM-INDIA",
+        "ELGIEQUIP",
+        "SWANDEF",
+        "KTKBANK",
+        "MARICO",
+        "ESABINDIA",
+        "INDUSINDBK",
+        "SUNPHARMA",
+        "BODALCHEM",
+        "RSWM",
+        "MBAPL",
+        "JBCHEPHARM",
+        "AARTIIND",
+        "FINCABLES",
+        "GESHIP",
+        "CONSOFINVT",
+        "EQUITASBNK",
+        "RKFORGE",
+        "ANGELONE",
+        "GRAPHITE",
+        "NMDC",
+        "STARHEALTH",
+        "JSWSTEEL",
+        "ASTERDM",
+        "SEAMECLTD",
+        "MAHASTEEL",
+        "KARURVYSYA",
+        "HINDZINC",
+        "PIXTRANS",
+        "SPAL",
+        "PARAS",
+        "HAPPYFORGE",
+        "BAJAJ-AUTO",
+        "WSTCSTPAPR",
+        "APOLLOHOSP",
+        "GAEL",
+        "ONEPOINT",
+        "SANDUMA",
+        "DIVISLAB",
+        "PRIVISCL",
+        "KPIL",
+        "ANTHEM",
+        "AEROENTER",
+        "GOLDIAM",
+        "PYRAMID",
+        "MANORAMA",
+        "CESC",
+        "INDUSTOWER",
+        "PREMIERENE",
+        "GAYAPROJ",
+        "EBGNG",
+        "ZENTEC",
+        "JAYNECOIND",
+        "SOUTHWEST",
+        "TFCILTD",
+        "RATNAMANI",
+        "MUKANDLTD",
+        "TORNTPHARM",
+        "ABCAPITAL",
+        "AUROPHARMA",
+        "ROLEXRINGS",
+        "IGPL",
+        "OIL",
+        "SONACOMS",
+        "ANURAS",
+        "APOLLOPIPE",
+        "MEDPLUS",
+        "BHARATFORG",
+        "JINDALSAW",
+        "ATULAUTO",
+        "PTC",
+        "EMCURE",
+        "AGIIL",
+        "BELRISE",
+        "SCHAEFFLER",
+        "DIVGIITTS",
+        "ABB",
+        "MUTHOOTMF",
+        "RAMRAT",
+        "CARERATING",
+        "VHLTD",
+        "PITTIENG",
+        "GLOBAL",
+        "AURUM",
+        "MCX",
+        "INDIAGLYCO",
+        "TIMKEN",
+        "FIEMIND",
+        "SIEMENS",
+        "BHARATSE",
+        "TIIL",
+        "IRISDOREME",
+        "PGIL",
+        "GPTINFRA",
+        "NYKAA",
+        "FEDERALBNK",
+        "ZYDUSWELL",
+        "WANBURY",
+        "EICHERMOT",
+        "TATASTEEL",
+        "DBOL",
+        "NATIONALUM",
+        "NELCAST",
+        "SCI",
+        "JPPOWER",
+        "AUBANK",
+        "PRUDENT",
+        "ALIVUS",
+        "OBEROIRLTY",
+        "BHARATWIRE",
+        "LUMAXIND",
+        "SUTLEJTEX",
+        "INOXINDIA",
+        "AKUMS",
+        "LUMAXTECH",
+        "IGIL",
+        "TIRUPATIFL",
+        "IRB",
+        "RAJRATAN",
+        "SUYOG",
+        "LUXIND",
+        "GRSE",
+        "NRAIL",
+        "ABSLAMC",
+        "RICOAUTO",
+        "ANANDRATHI",
+        "ARFIN",
+        "HINDCOPPER",
+        "AMBER",
+        "RPSGVENT",
+        "GANESHBE",
+        "APEX",
+        "ENGINERSIN",
+        "FINEORG",
+        "IMFA",
+        "MANINDS",
+        "STEELCAS",
+        "SHRIPISTON",
+        "GMDCLTD",
+        "KRN",
+        "WAAREEINDO",
+        "KECL"
+      ],
+      "scan_link": "scanlink:5d214baeff72830877d5e5c0a68c743c"
+    },
+    {
+      "widget_id": 4540245,
+      "widget_name": "10SMA",
+      "symbol_count": 50,
+      "symbols": [
+        "CEMPRO",
+        "RUBICON",
+        "ATLANTAELE",
+        "VIJAYA",
+        "WELCORP",
+        "NETWEB",
+        "PTCIL",
+        "THERMAX",
+        "FRACTAL",
+        "IFBIND",
+        "IFCI",
+        "ZEEL",
+        "NLCINDIA",
+        "APARINDS",
+        "WELSPUNLIV",
+        "TIPSMUSIC",
+        "METROPOLIS",
+        "KWIL",
+        "GOKULAGRO",
+        "BALRAMCHIN",
+        "VTL",
+        "AZAD",
+        "COALINDIA",
+        "HAPPYFORGE",
+        "OLECTRA",
+        "SURYAROSNI",
+        "CREDITACC",
+        "JBMA",
+        "HBLENGINE",
+        "GMRP&UI",
+        "NYKAA",
+        "ZYDUSWELL",
+        "TATASTEEL",
+        "BOSCHLTD",
+        "SANOFICONR",
+        "NATIONALUM",
+        "RTNPOWER",
+        "PRUDENT",
+        "AKUMS",
+        "LUMAXTECH",
+        "ABSLAMC",
+        "AMBER",
+        "ABDL",
+        "SAATVIKGL",
+        "FINEORG",
+        "AETHER",
+        "SHRIPISTON",
+        "SPLPETRO",
+        "WAAREEENER",
+        "KRN"
+      ],
+      "scan_link": "scanlink:5df8f26526649a8c319b35c7049aea13"
+    },
+    {
+      "widget_id": 4540244,
+      "widget_name": "Execution A+",
+      "symbol_count": 113,
+      "symbols": [
+        "MTARTECH",
+        "LUXIND",
+        "COHANCE",
+        "DEEPAKFERT",
+        "WALCHANNAG",
+        "TRITURBINE",
+        "TDPOWERSYS",
+        "LLOYDSENT",
+        "KRISHANA",
+        "JPPOWER",
+        "NITINSPIN",
+        "AEQUS",
+        "HSCL",
+        "PREMEXPLN",
+        "FACT",
+        "GANECOS",
+        "VIYASH",
+        "QPOWER",
+        "JTLIND",
+        "CARBORUNIV",
+        "RADICO",
+        "GENUSPOWER",
+        "GOODLUCK",
+        "EMIL",
+        "ELECON",
+        "INOXINDIA",
+        "HBLENGINE",
+        "BOMDYEING",
+        "GANDHAR",
+        "PRECAM",
+        "CUMMINSIND",
+        "USHAMART",
+        "SURYAROSNI",
+        "REDTAPE",
+        "ASIANPAINT",
+        "BBL",
+        "ABDL",
+        "ROLEXRINGS",
+        "DIXON",
+        "ABSLAMC",
+        "POLYPLEX",
+        "BERGEPAINT",
+        "HUDCO",
+        "ENGINERSIN",
+        "KANSAINER",
+        "ARFIN",
+        "SIEMENS",
+        "SBC",
+        "GRAPHITE",
+        "AARTIIND",
+        "INDGN",
+        "KMEW",
+        "ICICIAMC",
+        "CREDITACC",
+        "IIFLCAPS",
+        "KRBL",
+        "CROMPTON",
+        "JYOTISTRUC",
+        "ATULAUTO",
+        "PROTEAN",
+        "SUDARSCHEM",
+        "EXCELSOFT",
+        "TARIL",
+        "RELIGARE",
+        "MCX",
+        "AETHER",
+        "SAILIFE",
+        "TENNIND",
+        "JKPAPER",
+        "SHILCTECH",
+        "NAVA",
+        "RATNAMANI",
+        "BEML",
+        "ARIS",
+        "RICOAUTO",
+        "IGIL",
+        "GRAVITA",
+        "PIRAMALFIN",
+        "KIMS",
+        "TATAINVEST",
+        "HEG",
+        "TIMKEN",
+        "LICHSGFIN",
+        "IRB",
+        "CLEAN",
+        "VOLTAMP",
+        "GRSE",
+        "TATACHEM",
+        "EDELWEISS",
+        "ANURAS",
+        "LINDEINDIA",
+        "DELHIVERY",
+        "JINDALSTEL",
+        "KROSS",
+        "FINCABLES",
+        "HEMIPROP",
+        "AMBER",
+        "ACE",
+        "DCBBANK",
+        "SILVERCASE",
+        "SILVERAG",
+        "GRMOVER",
+        "HINDCOPPER",
+        "LGEINDIA",
+        "IPCALAB",
+        "TORNTPOWER",
+        "AJANTPHARM",
+        "GOLDCASE",
+        "ONGC",
+        "SCHAEFFLER",
+        "FINPIPE",
+        "SMSPHARMA",
+        "NATCOPHARM"
+      ],
+      "scan_link": "scanlink:11601779ba9b57b91cc2aa0fa584eff8"
+    },
+    {
+      "widget_id": 4540239,
+      "widget_name": "Sector Advances %",
+      "symbol_count": 20,
+      "symbols": [
+        "TELECOM",
+        "INDICES",
+        "I.T",
+        "BANK",
+        "TRANSPORTATION",
+        "INDUSTRIALS",
+        "MISCELLANEOUS",
+        "ENERGY",
+        "MEDIA",
+        "TELECOM-SERVICE",
+        "REALTY",
+        "CHEMICALS",
+        "CO-WORKING",
+        "SERVICES",
+        "FMCG",
+        "FINANCIALS",
+        "AUTO",
+        "TEXTILES",
+        "HEALTHCARE",
+        "N/A"
+      ],
+      "scan_link": null
+    },
+    {
+      "widget_id": 4540240,
+      "widget_name": "Sector Advances % Weekly",
+      "symbol_count": 20,
+      "symbols": [
+        "TELECOM",
+        "I.T",
+        "TEXTILES",
+        "MEDIA",
+        "INDUSTRIALS",
+        "HEALTHCARE",
+        "BANK",
+        "MISCELLANEOUS",
+        "SERVICES",
+        "TELECOM-SERVICE",
+        "ENERGY",
+        "FMCG",
+        "FINANCIALS",
+        "CHEMICALS",
+        "AUTO",
+        "TRANSPORTATION",
+        "REALTY",
+        "INDICES",
+        "CO-WORKING",
+        "N/A"
+      ],
+      "scan_link": null
+    },
+    {
+      "widget_id": 4540238,
+      "widget_name": "Delta Timing LT",
+      "symbol_count": 0,
+      "symbols": [],
+      "scan_link": null
+    },
+    {
+      "widget_id": 4540241,
+      "widget_name": "Delta Timing",
+      "symbol_count": 0,
+      "symbols": [],
+      "scan_link": null
+    }
+  ],
+  "merged_symbols": [
+    "63MOONS",
+    "AARTIIND",
+    "ABB",
+    "ABCAPITAL",
+    "ABDL",
+    "ABSLAMC",
+    "ACE",
+    "ACMESOLAR",
+    "ACUTAAS",
+    "ADANIENSOL",
+    "ADANIENT",
+    "ADANIGREEN",
+    "ADANIPORTS",
+    "ADANIPOWER",
+    "ADFFOODS",
+    "ADVENZYMES",
+    "AEGISLOG",
+    "AEQUS",
+    "AEROENTER",
+    "AEROFLEX",
+    "AETHER",
+    "AGIIL",
+    "AHLWEST",
+    "AIAENG",
+    "AJANTPHARM",
+    "AJAXENGG",
+    "AJMERA",
+    "AKUMS",
+    "ALGOQUANT",
+    "ALIVUS",
+    "ALKALI",
+    "ALKYLAMINE",
+    "AMBER",
+    "AMBIKCO",
+    "ANANDRATHI",
+    "ANGELONE",
+    "ANTELOPUS",
+    "ANTHEM",
+    "ANURAS",
+    "APARINDS",
+    "APCOTEXIND",
+    "APEX",
+    "APOLLO",
+    "APOLLOHOSP",
+    "APOLLOPIPE",
+    "ARFIN",
+    "ARIHANT",
+    "ARIHANTSUP",
+    "ARIS",
+    "ARVIND",
+    "ASHIANA",
+    "ASIANENE",
+    "ASIANPAINT",
+    "ASTERDM",
+    "ASTRAMICRO",
+    "ATGL",
+    "ATHERENERG",
+    "ATLANTAELE",
+    "ATULAUTO",
+    "AUBANK",
+    "AUROPHARMA",
+    "AURUM",
+    "AUTO",
+    "AVALON",
+    "AYMSYNTEX",
+    "AZAD",
+    "BAJAJ-AUTO",
+    "BAJAJCON",
+    "BAJEL",
+    "BALAMINES",
+    "BALRAMCHIN",
+    "BANDHANBNK",
+    "BANK",
+    "BBL",
+    "BBOX",
+    "BEL",
+    "BELRISE",
+    "BEML",
+    "BERGEPAINT",
+    "BHAGYANGR",
+    "BHARATFORG",
+    "BHARATSE",
+    "BHARATWIRE",
+    "BHEL",
+    "BIOCON",
+    "BIRLACABLE",
+    "BLISSGVS",
+    "BODALCHEM",
+    "BOMDYEING",
+    "BOSCH-HCIL",
+    "BOSCHLTD",
+    "BSE",
+    "CARBORUNIV",
+    "CARERATING",
+    "CARYSIL",
+    "CEIGALL",
+    "CELLO",
+    "CEMPRO",
+    "CENTUM",
+    "CESC",
+    "CGPOWER",
+    "CHEMICALS",
+    "CHENNPETRO",
+    "CLEAN",
+    "CLSEL",
+    "CO-WORKING",
+    "COALINDIA",
+    "COFFEEDAY",
+    "COHANCE",
+    "CONCORDBIO",
+    "CONFIPET",
+    "CONSOFINVT",
+    "CPPLUS",
+    "CRAFTSMAN",
+    "CREDITACC",
+    "CRIZAC",
+    "CROMPTON",
+    "CUMMINSIND",
+    "CUPID",
+    "DALMIASUG",
+    "DATAPATTNS",
+    "DBOL",
+    "DCBBANK",
+    "DEEDEV",
+    "DEEPAKFERT",
+    "DEEPINDS",
+    "DELHIVERY",
+    "DHANBANK",
+    "DIACABS",
+    "DIVGIITTS",
+    "DIVISLAB",
+    "DIXON",
+    "DOLLAR",
+    "DOLPHIN",
+    "DREDGECORP",
+    "DSSL",
+    "E2E",
+    "EBGNG",
+    "EDELWEISS",
+    "EICHERMOT",
+    "ELECON",
+    "ELECTHERM",
+    "ELGIEQUIP",
+    "EMCURE",
+    "EMIL",
+    "EMKAY",
+    "ENERGY",
+    "ENGINERSIN",
+    "ENRIN",
+    "EPACKPEB",
+    "EQUITASBNK",
+    "ESABINDIA",
+    "EXCELSOFT",
+    "FACT",
+    "FCL",
+    "FEDERALBNK",
+    "FEDFINA",
+    "FIEMIND",
+    "FINANCIALS",
+    "FINCABLES",
+    "FINEORG",
+    "FINPIPE",
+    "FMCG",
+    "FRACTAL",
+    "GAEL",
+    "GALAPREC",
+    "GANDHAR",
+    "GANECOS",
+    "GANESHBE",
+    "GAYAPROJ",
+    "GENUSPOWER",
+    "GESHIP",
+    "GHCLTEXTIL",
+    "GIPCL",
+    "GLAND",
+    "GLOBAL",
+    "GMDCLTD",
+    "GMRP&UI",
+    "GODREJIND",
+    "GODREJPROP",
+    "GOKULAGRO",
+    "GOLDCASE",
+    "GOLDIAM",
+    "GOODLUCK",
+    "GPIL",
+    "GPTHEALTH",
+    "GPTINFRA",
+    "GRANULES",
+    "GRAPHITE",
+    "GRASIM",
+    "GRAVITA",
+    "GRINDWELL",
+    "GRMOVER",
+    "GRSE",
+    "GRWRHITECH",
+    "GSEC10YEAR",
+    "GSLSU",
+    "GSPCROP",
+    "GTECJAINX",
+    "GVPIL",
+    "GVT&D",
+    "HAL",
+    "HAPPYFORGE",
+    "HARDWYN",
+    "HBLENGINE",
+    "HEALTHCARE",
+    "HEG",
+    "HEMIPROP",
+    "HFCL",
+    "HINDALCO",
+    "HINDCOPPER",
+    "HINDZINC",
+    "HIRECT",
+    "HLEGLAS",
+    "HONASA",
+    "HONDAPOWER",
+    "HSCL",
+    "HUDCO",
+    "I.T",
+    "IBULLSLTD",
+    "ICEMAKE",
+    "ICICIAMC",
+    "ICICIPRULI",
+    "ICIL",
+    "IDEA",
+    "IDEAFORGE",
+    "IFBIND",
+    "IFCI",
+    "IFGLEXPOR",
+    "IGIL",
+    "IGPL",
+    "IIFLCAPS",
+    "IMFA",
+    "INDGN",
+    "INDIAGLYCO",
+    "INDICES",
+    "INDOBORAX",
+    "INDOTECH",
+    "INDSWFTLAB",
+    "INDUSINDBK",
+    "INDUSTOWER",
+    "INDUSTRIALS",
+    "INFOBEAN",
+    "INNOVACAP",
+    "INOXINDIA",
+    "IOLCP",
+    "IPCALAB",
+    "IRB",
+    "IRCON",
+    "IRISDOREME",
+    "IZMO",
+    "J&KBANK",
+    "JASH",
+    "JAYBARMARU",
+    "JAYNECOIND",
+    "JBCHEPHARM",
+    "JBMA",
+    "JINDALSAW",
+    "JINDALSTEL",
+    "JKPAPER",
+    "JMFINANCIL",
+    "JNKINDIA",
+    "JPPOWER",
+    "JSLL",
+    "JSWENERGY",
+    "JSWSTEEL",
+    "JTLIND",
+    "JYOTISTRUC",
+    "KALPATARU",
+    "KANSAINER",
+    "KAPSTON",
+    "KARURVYSYA",
+    "KECL",
+    "KEI",
+    "KENNAMET",
+    "KERNEX",
+    "KICL",
+    "KIMS",
+    "KINGFA",
+    "KIRLOSENG",
+    "KIRLPNU",
+    "KMEW",
+    "KOPRAN",
+    "KOVAI",
+    "KPEL",
+    "KPIL",
+    "KRBL",
+    "KRISHANA",
+    "KRN",
+    "KROSS",
+    "KSHITIJPOL",
+    "KTKBANK",
+    "KWIL",
+    "LAURUSLABS",
+    "LGEINDIA",
+    "LICHSGFIN",
+    "LINDEINDIA",
+    "LLOYDSENGG",
+    "LLOYDSENT",
+    "LLOYDSME",
+    "LOWVOL1",
+    "LUMAXIND",
+    "LUMAXTECH",
+    "LUXIND",
+    "MADRASFERT",
+    "MAHABANK",
+    "MAHASTEEL",
+    "MANAPPURAM",
+    "MANINDS",
+    "MANORAMA",
+    "MAPMYINDIA",
+    "MARICO",
+    "MARINE",
+    "MARKSANS",
+    "MARSONS",
+    "MASTEK",
+    "MAYURUNIQ",
+    "MBAPL",
+    "MBLINFRA",
+    "MCLEODRUSS",
+    "MCX",
+    "MEDIA",
+    "MEDPLUS",
+    "MENONBE",
+    "METROPOLIS",
+    "MIDHANI",
+    "MIDWESTLTD",
+    "MIRCELECTR",
+    "MISCELLANEOUS",
+    "MMTC",
+    "MODISONLTD",
+    "MOTHERSON",
+    "MSPL",
+    "MTARTECH",
+    "MUFIN",
+    "MUKANDLTD",
+    "MUTHOOTMF",
+    "N/A",
+    "NAHARSPING",
+    "NAM-INDIA",
+    "NATCOPHARM",
+    "NATIONALUM",
+    "NAVA",
+    "NAVINFLUOR",
+    "NELCAST",
+    "NEOGEN",
+    "NESTLEIND",
+    "NETWEB",
+    "NEULANDLAB",
+    "NEWGEN",
+    "NEXT50",
+    "NGLFINE",
+    "NIBE",
+    "NIITLTD",
+    "NINSYS",
+    "NITINSPIN",
+    "NLCINDIA",
+    "NMDC",
+    "NOVARTIND",
+    "NPST",
+    "NRAIL",
+    "NRBBEARING",
+    "NSLNISP",
+    "NYKAA",
+    "OBEROIRLTY",
+    "OFSS",
+    "OIL",
+    "OLECTRA",
+    "OMAXAUTO",
+    "ONEPOINT",
+    "ONESOURCE",
+    "ONGC",
+    "PAISALO",
+    "PARACABLES",
+    "PARAS",
+    "PASUPTAC",
+    "PGIL",
+    "PIRAMALFIN",
+    "PITTIENG",
+    "PIXTRANS",
+    "PNBHOUSING",
+    "POLYCAB",
+    "POLYPLEX",
+    "POWERINDIA",
+    "POWERMECH",
+    "PRECAM",
+    "PRECOT",
+    "PRECWIRE",
+    "PREMEXPLN",
+    "PREMIERENE",
+    "PRINCEPIPE",
+    "PRIVISCL",
+    "PROTEAN",
+    "PRUDENT",
+    "PTC",
+    "PTCIL",
+    "PURVA",
+    "PYRAMID",
+    "QPOWER",
+    "RADICO",
+    "RAILTEL",
+    "RAIN",
+    "RAJRATAN",
+    "RAMRAT",
+    "RATNAMANI",
+    "RATNAVEER",
+    "RAYMONDREL",
+    "RBLBANK",
+    "REALTY",
+    "REDTAPE",
+    "REFEX",
+    "RELIGARE",
+    "RICOAUTO",
+    "RISHABH",
+    "RKFORGE",
+    "ROLEXRINGS",
+    "ROSSTECH",
+    "ROUTE",
+    "RPSGVENT",
+    "RPTECH",
+    "RRKABEL",
+    "RSWM",
+    "RTNPOWER",
+    "RUBICON",
+    "RUBYMILLS",
+    "RUPA",
+    "RUSTOMJEE",
+    "SAATVIKGL",
+    "SABEVENTS",
+    "SADHNANIQ",
+    "SAFARI",
+    "SAIL",
+    "SAILIFE",
+    "SAKAR",
+    "SALSTEEL",
+    "SAMMAANCAP",
+    "SANDHAR",
+    "SANDUMA",
+    "SANGAMIND",
+    "SANGHVIMOV",
+    "SANOFICONR",
+    "SANSERA",
+    "SANSTAR",
+    "SASKEN",
+    "SATIN",
+    "SBC",
+    "SBCL",
+    "SBIETFIT",
+    "SCHAEFFLER",
+    "SCHNEIDER",
+    "SCI",
+    "SEAMECLTD",
+    "SENORES",
+    "SERVICES",
+    "SGFIN",
+    "SHAILY",
+    "SHARDACROP",
+    "SHILCTECH",
+    "SHILPAMED",
+    "SHRIPISTON",
+    "SHRIRAMPPS",
+    "SIEMENS",
+    "SIGMAADV",
+    "SIGNATURE",
+    "SIGNPOST",
+    "SILVERAG",
+    "SILVERCASE",
+    "SILVERTUC",
+    "SINDHUTRAD",
+    "SIS",
+    "SJS",
+    "SKMEGGPROD",
+    "SKYGOLD",
+    "SMLMAH",
+    "SMSPHARMA",
+    "SOBHA",
+    "SOFTTECH",
+    "SOLARINDS",
+    "SOLEX",
+    "SOMANYCERA",
+    "SONACOMS",
+    "SOUTHBANK",
+    "SOUTHWEST",
+    "SPAL",
+    "SPARC",
+    "SPECTRUM",
+    "SPLPETRO",
+    "SPORTKING",
+    "SRM",
+    "STAR",
+    "STARHEALTH",
+    "STEELCAS",
+    "STEELXIND",
+    "STLTECH",
+    "STYLAMIND",
+    "SUDARSCHEM",
+    "SUNFLAG",
+    "SUNPHARMA",
+    "SURYAROSNI",
+    "SURYODAY",
+    "SUTLEJTEX",
+    "SUVEN",
+    "SUYOG",
+    "SVPGLOB",
+    "SWANDEF",
+    "SYRMA",
+    "TALBROAUTO",
+    "TARC",
+    "TARIL",
+    "TATACHEM",
+    "TATAELXSI",
+    "TATAINVEST",
+    "TATASTEEL",
+    "TCC",
+    "TDPOWERSYS",
+    "TECH",
+    "TELECOM",
+    "TELECOM-SERVICE",
+    "TENNIND",
+    "TEXTILES",
+    "TFCILTD",
+    "THANGAMAYL",
+    "THERMAX",
+    "TIIL",
+    "TIINDIA",
+    "TIMKEN",
+    "TIPSMUSIC",
+    "TIRUPATIFL",
+    "TMB",
+    "TMPV",
+    "TOP20",
+    "TORNTPHARM",
+    "TORNTPOWER",
+    "TRANSPORTATION",
+    "TRITURBINE",
+    "UEL",
+    "UFBL",
+    "UNIMECH",
+    "UNIPARTS",
+    "UNIVCABLES",
+    "UPL",
+    "USHAMART",
+    "UTLSOLAR",
+    "V2RETAIL",
+    "VADILALIND",
+    "VBL",
+    "VEDL",
+    "VENUSPIPES",
+    "VENUSREM",
+    "VHLTD",
+    "VIJAYA",
+    "VIKRAN",
+    "VINDHYATEL",
+    "VISHNU",
+    "VIYASH",
+    "VOLTAMP",
+    "VTL",
+    "WAAREEENER",
+    "WAAREEINDO",
+    "WABAG",
+    "WALCHANNAG",
+    "WANBURY",
+    "WEALTH",
+    "WEBELSOLAR",
+    "WEL",
+    "WELCORP",
+    "WELENT",
+    "WELINV",
+    "WELSPUNLIV",
+    "WHEELS",
+    "WOCKPHARMA",
+    "WSTCSTPAPR",
+    "XPROINDIA",
+    "YASHO",
+    "YATHARTH",
+    "ZEEL",
+    "ZENSARTECH",
+    "ZENTEC",
+    "ZIMLAB",
+    "ZYDUSWELL"
+  ],
+  "merged_symbol_count": 580,
+  "high_conviction": [
+    {
+      "symbol": "VENUSREM",
+      "widget_hits": 5,
+      "conviction_score": 100
+    },
+    {
+      "symbol": "AMBER",
+      "widget_hits": 5,
+      "conviction_score": 100
+    },
+    {
+      "symbol": "ABSLAMC",
+      "widget_hits": 5,
+      "conviction_score": 100
+    },
+    {
+      "symbol": "SPORTKING",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "NMDC",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "KERNEX",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "NEULANDLAB",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "BHEL",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "HINDCOPPER",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "DATAPATTNS",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "PARAS",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "HFCL",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "INDOBORAX",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "COALINDIA",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "FCL",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "GMDCLTD",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "IDEAFORGE",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "DREDGECORP",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "ZYDUSWELL",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "SPARC",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "SIGMAADV",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "MTARTECH",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "WELCORP",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "TDPOWERSYS",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "APARINDS",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "THERMAX",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "KRN",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "NITINSPIN",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "VTL",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "NETWEB",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "CUMMINSIND",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "GOKULAGRO",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "TRITURBINE",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "NLCINDIA",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "AZAD",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "VIJAYA",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "AARTIIND",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "HAPPYFORGE",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "INOXINDIA",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "SAILIFE",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "VIYASH",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "FINCABLES",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "HSCL",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "SBC",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "SIEMENS",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "ENGINERSIN",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "RADICO",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "NATIONALUM",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "SHRIPISTON",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "IFCI",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "MCX",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "USHAMART",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "LUMAXTECH",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "GRAPHITE",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "TATASTEEL",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "NYKAA",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "ANURAS",
+      "widget_hits": 4,
+      "conviction_score": 80
+    },
+    {
+      "symbol": "PTCIL",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "RUBICON",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "BALAMINES",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "ACMESOLAR",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "VBL",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "KIRLPNU",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "MIDHANI",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "IBULLSLTD",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "ASTRAMICRO",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "ANTHEM",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "JNKINDIA",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "GPTINFRA",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "WABAG",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "CENTUM",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "VINDHYATEL",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "STLTECH",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "SWANDEF",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "DEEDEV",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "GVPIL",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "UFBL",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "BLISSGVS",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "AEROFLEX",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "POWERINDIA",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "SAKAR",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "GRWRHITECH",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "BAJAJCON",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "BBOX",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "NOVARTIND",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "KOVAI",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "WHEELS",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "PRECWIRE",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "SCHNEIDER",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "GVT&D",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "ACUTAAS",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "NGLFINE",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "ROSSTECH",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "SKYGOLD",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "ADANIENSOL",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "UNIVCABLES",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "ARVIND",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "AVALON",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "ADANIPOWER",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "SYRMA",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "SANSERA",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "KIRLOSENG",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "KAPSTON",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "APEX",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "ADANIGREEN",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "ATHERENERG",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "SEAMECLTD",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "PAISALO",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "CEMPRO",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "SATIN",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "LUXIND",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "MAYURUNIQ",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "WALCHANNAG",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "RPTECH",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "DSSL",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "LLOYDSME",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "MANINDS",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "ABB",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "INDSWFTLAB",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "HARDWYN",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "RISHABH",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "KRISHANA",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "HONASA",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "SCI",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "SHAILY",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "BSE",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "CUPID",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "J&KBANK",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "KTKBANK",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "SAIL",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "MBAPL",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "RRKABEL",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "UNIPARTS",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "STYLAMIND",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "GESHIP",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "VEDL",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "AGIIL",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "STEELCAS",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "POLYCAB",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "GRANULES",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "SONACOMS",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "CHENNPETRO",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "DIVGIITTS",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "DHANBANK",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "IDEA",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "SENORES",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "TMB",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "BHARATFORG",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "LAURUSLABS",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "BALRAMCHIN",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "ADANIPORTS",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "TIPSMUSIC",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "MOTHERSON",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "BHARATWIRE",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "CARBORUNIV",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "CEIGALL",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "ANGELONE",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "IMFA",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "NAM-INDIA",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "KINGFA",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "PRIVISCL",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "ASHIANA",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "HINDALCO",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "THANGAMAYL",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "AUROPHARMA",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "SANSTAR",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "RATNAMANI",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "KIMS",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "ASTERDM",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "SJS",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "VISHNU",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "KEI",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "AKUMS",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "SURYODAY",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "MIRCELECTR",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "STAR",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "MAHABANK",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "GOODLUCK",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "WELSPUNLIV",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "TIMKEN",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "ROLEXRINGS",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "JPPOWER",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "MAHASTEEL",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "GRINDWELL",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "CRAFTSMAN",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "AIAENG",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "PRUDENT",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "IGIL",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "JAYNECOIND",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "NAVINFLUOR",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "ANANDRATHI",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "SANGAMIND",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "RATNAVEER",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "ARFIN",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "JBCHEPHARM",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "FINEORG",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "GAEL",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "JSWSTEEL",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "TFCILTD",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "ATULAUTO",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "KARURVYSYA",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "EMCURE",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "SILVERTUC",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "FEDERALBNK",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "KENNAMET",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "GRSE",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "TORNTPHARM",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "SCHAEFFLER",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "RBLBANK",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "ONEPOINT",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "IRB",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "PNBHOUSING",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "EQUITASBNK",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "MANAPPURAM",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "HINDZINC",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "MUTHOOTMF",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "AUBANK",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "RICOAUTO",
+      "widget_hits": 3,
+      "conviction_score": 60
+    },
+    {
+      "symbol": "ELECTHERM",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "JSLL",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "HLEGLAS",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "SBIETFIT",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "SKMEGGPROD",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "IFGLEXPOR",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "AJMERA",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "NIITLTD",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "PASUPTAC",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "NSLNISP",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "GTECJAINX",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "BIRLACABLE",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "RUBYMILLS",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "LGEINDIA",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "ATLANTAELE",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "FINPIPE",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "LLOYDSENT",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "JTLIND",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "BEML",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "CPPLUS",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "CONFIPET",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "NINSYS",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "E2E",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "INDOTECH",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "PARACABLES",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "SUVEN",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "APOLLO",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "SHILPAMED",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "IOLCP",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "ANTELOPUS",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "SASKEN",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "YASHO",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "SBCL",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "APOLLOPIPE",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "CGPOWER",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "HIRECT",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "JINDALSAW",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "ENRIN",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "EBGNG",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "DIACABS",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "NELCAST",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "SUNFLAG",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "LLOYDSENGG",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "PREMIERENE",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "CARYSIL",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "SGFIN",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "SOLARINDS",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "BANDHANBNK",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "NEOGEN",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "ADVENZYMES",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "STEELXIND",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "ADFFOODS",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "APCOTEXIND",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "RAIN",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "NRBBEARING",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "SINDHUTRAD",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "AYMSYNTEX",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "MARKSANS",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "DEEPINDS",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "WOCKPHARMA",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "ADANIENT",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "ELGIEQUIP",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "SIGNPOST",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "ICIL",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "JAYBARMARU",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "ATGL",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "GLAND",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "RAMRAT",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "TIINDIA",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "PITTIENG",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "YATHARTH",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "RPSGVENT",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "OFSS",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "INNOVACAP",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "SAMMAANCAP",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "BELRISE",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "WSTCSTPAPR",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "SPAL",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "GOLDIAM",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "VENUSPIPES",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "SOMANYCERA",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "SANDHAR",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "ZENTEC",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "TALBROAUTO",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "SIS",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "GALAPREC",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "TIIL",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "PIXTRANS",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "MSPL",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "STARHEALTH",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "PTC",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "JSWENERGY",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "ALIVUS",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "V2RETAIL",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "AEROENTER",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "IGPL",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "BHARATSE",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "MANORAMA",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "CESC",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "RKFORGE",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "KPIL",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "PGIL",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "APOLLOHOSP",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "BIOCON",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "GRASIM",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "MUKANDLTD",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "BAJAJ-AUTO",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "MEDPLUS",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "OIL",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "SUNPHARMA",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "MARICO",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "NESTLEIND",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "ESABINDIA",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "INDIAGLYCO",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "DIVISLAB",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "XPROINDIA",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "FIEMIND",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "MUFIN",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "CARERATING",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "SANDUMA",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "OBEROIRLTY",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "FEDFINA",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "LUMAXIND",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "INDUSTOWER",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "EICHERMOT",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "ABCAPITAL",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "INDUSINDBK",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "SOUTHBANK",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "AURUM",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "WAAREEINDO",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "RAJRATAN",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "SURYAROSNI",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "CREDITACC",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "HBLENGINE",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "ABDL",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "AETHER",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "TELECOM",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "INDICES",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "I.T",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "BANK",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "TRANSPORTATION",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "INDUSTRIALS",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "MISCELLANEOUS",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "ENERGY",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "MEDIA",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "TELECOM-SERVICE",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "REALTY",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "CHEMICALS",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "CO-WORKING",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "SERVICES",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "FMCG",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "FINANCIALS",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "AUTO",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "TEXTILES",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "HEALTHCARE",
+      "widget_hits": 2,
+      "conviction_score": 40
+    },
+    {
+      "symbol": "N/A",
+      "widget_hits": 2,
+      "conviction_score": 40
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+.env
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+data/cookies.json
+data/chartink.db
+data/inspection_findings.json
+*.log
+.DS_Store
