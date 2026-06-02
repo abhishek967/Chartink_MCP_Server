@@ -12,8 +12,22 @@ from app.dependencies import ChartinkClientDep, RepositoryDep, SessionManagerDep
 router = APIRouter(tags=["health"])
 
 
+@router.get("/")
+def root() -> dict[str, str]:
+    return {
+        "status": "healthy",
+        "service": "Chartink Intelligence MCP",
+    }
+
+
 @router.get("/health")
-def health(
+def health() -> dict[str, str]:
+    """Liveness probe for Render/Docker — does not require Chartink auth."""
+    return {"status": "ok"}
+
+
+@router.get("/health/detail")
+def health_detail(
     client: ChartinkClientDep,
     repository: RepositoryDep,
     session_manager: SessionManagerDep,

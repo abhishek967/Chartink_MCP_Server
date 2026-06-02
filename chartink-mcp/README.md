@@ -73,7 +73,9 @@ python scripts/login_test.py
 
 | Method | Path | Description |
 |--------|------|-------------|
-| GET | `/health` | Service and session health |
+| GET | `/` | Service identity (liveness) |
+| GET | `/health` | Lightweight liveness (`{"status":"ok"}`) |
+| GET | `/health/detail` | Session and DB diagnostics |
 | GET | `/scans` | List all account scans |
 | GET | `/alerts` | List all alerts |
 | GET | `/watchlists` | List all watchlists |
@@ -226,15 +228,27 @@ Sample Chartink webhook payload:
 2. Create a new **Web Service** on [Render](https://render.com)
 3. Connect your repository
 4. Settings:
-   - **Environment**: Docker
+   - **Environment**: **Docker** (recommended — the Dockerfile runs `playwright install --with-deps chromium`)
    - **Dockerfile Path**: `Dockerfile`
-   - **Health Check Path**: `/health`
+   - **Health Check Path**: `/health` (or `/` — both return success without Chartink auth)
 5. Add environment variables:
    - `CHARTINK_EMAIL`
    - `CHARTINK_PASSWORD`
+   - `CHARTINK_STARTUP_AUTO_LOGIN=false` (default; keep off on Render)
    - `WEBHOOK_SECRET` (optional)
 6. Add a **Persistent Disk** mounted at `/app/data` (for cookies + SQLite)
-7. Deploy
+7. After deploy, authenticate once:
+   - Run `scripts/login_test.py` locally and copy `data/cookies.json` to the disk, **or**
+   - `POST https://your-app.onrender.com/refresh-session` (runs Playwright in a request worker; may still hit CAPTCHA)
+8. Deploy
+
+**Native Python on Render (not Docker):** add a build step so browsers exist:
+
+```bash
+pip install -r requirements.txt && playwright install --with-deps chromium
+```
+
+**Why startup login is off:** browser login uses Playwright’s sync API, which cannot run inside FastAPI’s asyncio lifespan. Startup auto-login is disabled by default so the service always boots; use persisted cookies or `/refresh-session` instead.
 
 ## Deploy to Railway
 
@@ -293,7 +307,7 @@ Chartink has no public API. This server reverse-engineers the authenticated web 
 2. **CSRF** — Each screener page embeds a CSRF token in a `<meta>` tag
 3. **Scan execution** — POST to `/screener/process` with `scan_clause` payload
 4. **Session reuse** — Cookies persist in `data/cookies.json` and SQLite between restarts
-5. **Auto-refresh** — Expired sessions trigger automatic re-login
+5. **Auto-refresh** — On-demand via `POST /refresh-session` (startup auto-login is off by default)
 
 Run `scripts/inspect_chartink.py` to discover endpoints and scan metadata for your account.
 

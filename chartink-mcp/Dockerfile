@@ -1,3 +1,5 @@
+# Render/Railway: use this Dockerfile (Environment = Docker). Chromium is installed
+# below for POST /refresh-session; startup does not run Playwright by default.
 FROM python:3.11-slim
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
@@ -14,6 +16,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY requirements.txt .
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
+# Required when using Playwright for session refresh (not needed at app startup).
 RUN playwright install --with-deps chromium
 
 COPY . .

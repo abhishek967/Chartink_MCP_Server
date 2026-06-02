@@ -1,4 +1,11 @@
-"""Chartink session management with Playwright login and cookie persistence."""
+"""Chartink session management with Playwright login and cookie persistence.
+
+Browser login uses Playwright's **sync** API (``playwright.sync_api``). Do not call
+``login()`` / ``_browser_login()`` from an async context (e.g. FastAPI lifespan or
+route handlers) until migrated to ``playwright.async_api``. Startup auto-login is
+disabled by default; use ``POST /refresh-session`` or run ``scripts/login_test.py``
+locally, then persist cookies to the Render disk.
+"""
 
 from __future__ import annotations
 
@@ -160,6 +167,14 @@ class SessionManager:
         if self._cookies and self.validate_session():
             return self._cookies
         return self.login()
+
+    def log_startup_auto_login_skipped(self) -> None:
+        """Log that browser login was not attempted during application startup."""
+        logger.info(
+            "Startup auto-login skipped (CHARTINK_STARTUP_AUTO_LOGIN=false). "
+            "Session validation remains available; use POST /refresh-session or "
+            "scripts/login_test.py to authenticate."
+        )
 
     def get_cookies(self) -> dict[str, str]:
         """Return current cookies, loading from disk if needed."""

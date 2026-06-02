@@ -70,17 +70,38 @@ async def lifespan(app: FastAPI):
     init_db()
     session_manager = get_session_manager()
     session_manager.load_cookies()
-    if settings.chartink_email and settings.chartink_password:
-        if not session_manager.validate_session():
-            logger.info("No valid session found, attempting auto-login")
-            try:
-                session_manager.auto_reauthenticate()
-            except Exception as exc:
-                logger.warning("Auto-login failed on startup: {}", exc)
+
+    if settings.chartink_startup_auto_login:
+        if settings.chartink_email and settings.chartink_password:
+            if not session_manager.validate_session():
+                logger.info("No valid session found, attempting startup auto-login")
+                try:
+                    session_manager.auto_reauthenticate()
+                except Exception as exc:
+                    logger.warning(
+                        "Startup auto-login failed (non-fatal, service will continue): {}",
+                        exc,
+                    )
+            else:
+                logger.info("Existing Chartink session is valid")
         else:
-            logger.info("Existing Chartink session is valid")
+            logger.warning(
+                "CHARTINK_EMAIL/PASSWORD not set — login required via POST /refresh-session"
+            )
     else:
-        logger.warning("CHARTINK_EMAIL/PASSWORD not set — login required via /refresh-session")
+        session_manager.log_startup_auto_login_skipped()
+        try:
+            if session_manager.validate_session():
+                logger.info("Loaded Chartink session cookies are valid")
+            elif settings.chartink_email:
+                logger.warning(
+                    "Chartink session invalid or missing — authenticate via "
+                    "POST /refresh-session or upload cookies to the persistent disk"
+                )
+        except Exception as exc:
+            logger.warning(
+                "Session validation failed on startup (non-fatal): {}", exc
+            )
     yield
     logger.info("Shutting down {}", settings.app_name)
 
