@@ -4,9 +4,11 @@ from __future__ import annotations
 
 from typing import Any
 
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
+from loguru import logger
 
 from app.config import get_settings
+from auth.session_manager import AuthenticationError
 from app.dependencies import ChartinkClientDep, RepositoryDep, SessionManagerDep
 
 router = APIRouter(tags=["health"])
@@ -64,10 +66,21 @@ def list_watchlists(client: ChartinkClientDep) -> list[dict[str, Any]]:
 
 @router.post("/refresh-session")
 def refresh_session(session_manager: SessionManagerDep) -> dict[str, Any]:
-    cookies = session_manager.refresh_session()
-    valid = session_manager.validate_session()
-    return {
-        "refreshed": True,
-        "valid": valid,
-        "cookie_count": len(cookies),
-    }
+    """Explicit browser login; may fail on Render (CAPTCHA / Playwright limits)."""
+    try:
+        cookies = session_manager.refresh_session()
+        valid = session_manager.validate_session()
+        return {
+            "refreshed": True,
+            "valid": valid,
+            "cookie_count": len(cookies),
+        }
+    except AuthenticationError as exc:
+        logger.warning("refresh-session failed: {}", exc)
+        raise HTTPException(status_code=401, detail=str(exc)) from exc
+    except Exception as exc:
+        logger.warning("refresh-session unexpected error: {}", exc)
+        raise HTTPException(
+            status_code=503,
+            detail=f"Session refresh failed: {exc}",
+        ) from exc

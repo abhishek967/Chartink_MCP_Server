@@ -12,7 +12,7 @@ from bs4 import BeautifulSoup
 from loguru import logger
 
 from app.config import get_settings
-from auth.session_manager import AuthenticationError, SessionManager
+from auth.session_manager import SessionManager
 from storage.models import Scan
 from storage.repository import ChartinkRepository
 
@@ -61,10 +61,8 @@ class ChartinkClient:
         return self.session_manager.validate_session()
 
     def _ensure_authenticated(self) -> None:
-        if not self.is_authenticated():
-            self.session_manager.auto_reauthenticate()
-            if not self.is_authenticated():
-                raise AuthenticationError("Unable to establish authenticated Chartink session")
+        """Require a valid cookie session; does not launch Playwright (use refresh-session)."""
+        self.session_manager.require_valid_session()
 
     def _request(
         self,

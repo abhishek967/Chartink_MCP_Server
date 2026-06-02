@@ -28,6 +28,12 @@ class AuthenticationError(Exception):
     """Raised when Chartink authentication fails."""
 
 
+NOT_AUTHENTICATED_MESSAGE = (
+    "Chartink session is not authenticated. Run scripts/login_test.py locally, "
+    "upload cookies to the server data volume (COOKIES_FILE), or POST /refresh-session."
+)
+
+
 class SessionManager:
     """Manages Chartink browser login, cookie persistence, and session validation."""
 
@@ -82,6 +88,12 @@ class SessionManager:
             if self.repository:
                 self.repository.invalidate_sessions()
             logger.info("Chartink session cleared")
+
+    def require_valid_session(self) -> None:
+        """Raise if cookies are missing or the session is not valid (no browser login)."""
+        self.load_cookies()
+        if not self.validate_session():
+            raise AuthenticationError(NOT_AUTHENTICATED_MESSAGE)
 
     def validate_session(self) -> bool:
         """Check whether the current session is authenticated."""

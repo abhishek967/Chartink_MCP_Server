@@ -17,6 +17,7 @@ if str(PROJECT_ROOT) not in sys.path:
 
 from app.config import get_settings  # noqa: E402
 from app.dependencies import get_session_manager  # noqa: E402
+from app.exception_handlers import register_exception_handlers  # noqa: E402
 from routes.atlas import router as atlas_router  # noqa: E402
 from routes.health import router as health_router  # noqa: E402
 from routes.webhook import router as webhook_router  # noqa: E402
@@ -121,6 +122,7 @@ def create_app() -> FastAPI:
         allow_methods=["*"],
         allow_headers=["*"],
     )
+    register_exception_handlers(app)
     app.include_router(health_router)
     app.include_router(atlas_router)
     app.include_router(webhook_router)

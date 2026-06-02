@@ -12,7 +12,7 @@ from bs4 import BeautifulSoup
 from loguru import logger
 
 from app.config import get_settings
-from auth.session_manager import AuthenticationError, SessionManager
+from auth.session_manager import SessionManager
 from storage.repository import ChartinkRepository
 
 
@@ -37,10 +37,8 @@ class AtlasClient:
         return self.settings.chartink_base_url.rstrip("/")
 
     def _ensure_authenticated(self) -> None:
-        if not self.session_manager.validate_session():
-            self.session_manager.auto_reauthenticate()
-            if not self.session_manager.validate_session():
-                raise AuthenticationError("Unable to establish authenticated Chartink session")
+        """Require a valid cookie session; does not launch Playwright (use refresh-session)."""
+        self.session_manager.require_valid_session()
 
     def _http_client(self) -> httpx.Client:
         return httpx.Client(
