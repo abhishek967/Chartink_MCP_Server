@@ -4,10 +4,12 @@ services:
     name: chartink-mcp-server
     runtime: python
     rootDir: chartink-mcp
-    buildCommand: pip install -r requirements.txt && playwright install --with-deps chromium
+    buildCommand: bash scripts/render_build.sh
     startCommand: uvicorn app.server:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /health
     envVars:
+      - key: PLAYWRIGHT_BROWSERS_PATH
+        value: .playwright-browsers
       - key: CHARTINK_AUTO_LOGIN
         value: "true"
       - key: CHARTINK_STARTUP_AUTO_LOGIN

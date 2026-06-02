@@ -8,6 +8,7 @@ Playwright never runs inside FastAPI's asyncio loop. Set ``CHARTINK_EMAIL`` and
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 import sys
 import threading
@@ -249,6 +250,9 @@ class SessionManager:
         """Run sync Playwright in a child process (isolated from asyncio)."""
         worker = Path(__file__).resolve().parent / "browser_login_worker.py"
         timeout_sec = int(self.settings.playwright_timeout_ms / 1000) + 60
+        env = os.environ.copy()
+        browsers_path = self.settings.playwright_browsers_path.resolve()
+        env["PLAYWRIGHT_BROWSERS_PATH"] = str(browsers_path)
         try:
             proc = subprocess.run(
                 [sys.executable, str(worker), email, password],
@@ -256,6 +260,7 @@ class SessionManager:
                 text=True,
                 timeout=timeout_sec,
                 cwd=str(PROJECT_ROOT),
+                env=env,
                 check=False,
             )
         except subprocess.TimeoutExpired as exc:

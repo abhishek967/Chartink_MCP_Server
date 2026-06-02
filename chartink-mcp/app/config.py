@@ -120,6 +120,11 @@ class Settings(BaseSettings):
 
     playwright_headless: bool = True
     playwright_timeout_ms: int = 60_000
+    # Must match build step; browsers install into this folder on Render.
+    playwright_browsers_path: Path = Field(
+        default=PROJECT_ROOT / ".playwright-browsers",
+        alias="PLAYWRIGHT_BROWSERS_PATH",
+    )
 
     webhook_secret: str = Field(default="", alias="WEBHOOK_SECRET")
     log_level: str = "INFO"

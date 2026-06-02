@@ -8,6 +8,7 @@ from fastapi import APIRouter, HTTPException
 from loguru import logger
 
 from app.config import get_settings
+from auth.browser_login import is_playwright_browser_installed
 from auth.session_manager import AuthenticationError
 from app.dependencies import ChartinkClientDep, RepositoryDep, SessionManagerDep
 
@@ -36,12 +37,17 @@ def health_detail(
 ) -> dict[str, Any]:
     settings = get_settings()
     authenticated = client.is_authenticated()
+    playwright_ready = is_playwright_browser_installed()
     return {
         "status": "ok" if authenticated else "degraded",
         "service": settings.app_name,
         "version": settings.app_version,
         "environment": settings.environment,
         "authenticated": authenticated,
+        "playwright_ready": playwright_ready,
+        "chartink_credentials_set": bool(
+            settings.chartink_email and settings.chartink_password
+        ),
         "scans_count": len(repository.list_scans()),
         "alerts_count": len(repository.list_alerts()),
         "watchlists_count": len(repository.list_watchlists()),
