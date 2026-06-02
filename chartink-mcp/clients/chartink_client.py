@@ -61,8 +61,8 @@ class ChartinkClient:
         return self.session_manager.validate_session()
 
     def _ensure_authenticated(self) -> None:
-        """Require a valid cookie session; does not launch Playwright (use refresh-session)."""
-        self.session_manager.require_valid_session()
+        """Require a valid session; runs automated login when CHARTINK_AUTO_LOGIN is enabled."""
+        self.session_manager.ensure_authenticated()
 
     def _request(
         self,

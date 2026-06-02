@@ -49,10 +49,13 @@ class Settings(BaseSettings):
     request_timeout_seconds: int = 30
     max_scan_results: int = 500
 
-    # Disabled by default: Playwright sync login must not run during FastAPI
-    # lifespan (asyncio loop). Enable only for local dev if needed.
+    # Automated browser login (runs in a subprocess, safe with asyncio).
+    chartink_auto_login: bool = Field(
+        default=True,
+        alias="CHARTINK_AUTO_LOGIN",
+    )
     chartink_startup_auto_login: bool = Field(
-        default=False,
+        default=True,
         alias="CHARTINK_STARTUP_AUTO_LOGIN",
     )
 

@@ -1,15 +1,15 @@
 """Chartink session management with Playwright login and cookie persistence.
 
-Browser login uses Playwright's **sync** API (``playwright.sync_api``). Do not call
-``login()`` / ``_browser_login()`` from an async context (e.g. FastAPI lifespan or
-route handlers) until migrated to ``playwright.async_api``. Startup auto-login is
-disabled by default; use ``POST /refresh-session`` or run ``scripts/login_test.py``
-locally, then persist cookies to the Render disk.
+Browser login runs in a **subprocess** (``auth/browser_login_worker.py``) so sync
+Playwright never runs inside FastAPI's asyncio loop. Set ``CHARTINK_EMAIL`` and
+``CHARTINK_PASSWORD`` on Render for fully automated login and refresh.
 """
 
 from __future__ import annotations
 
 import json
+import subprocess
+import sys
 import threading
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -17,10 +17,7 @@ from typing import Any
 
 import httpx
 from loguru import logger
-from playwright.sync_api import TimeoutError as PlaywrightTimeoutError
-from playwright.sync_api import sync_playwright
-
-from app.config import get_settings
+from app.config import PROJECT_ROOT, get_settings
 from storage.repository import ChartinkRepository
 
 
@@ -29,8 +26,9 @@ class AuthenticationError(Exception):
 
 
 NOT_AUTHENTICATED_MESSAGE = (
-    "Chartink session is not authenticated. Run scripts/login_test.py locally, "
-    "upload cookies to the server data volume (COOKIES_FILE), or POST /refresh-session."
+    "Chartink session is not authenticated. Set CHARTINK_EMAIL and CHARTINK_PASSWORD "
+    "on the server (CHARTINK_AUTO_LOGIN=true) and POST /refresh-session, or upload "
+    "cookies to COOKIES_FILE."
 )
 
 
@@ -61,7 +59,7 @@ class SessionManager:
 
         with self._lock:
             logger.info("Starting Chartink browser login for {}", email)
-            cookies = self._browser_login(email, password)
+            cookies = self._browser_login_subprocess(email, password)
             self._cookies = cookies
             self._last_login_at = datetime.now(timezone.utc)
             self.save_cookies(cookies)
@@ -89,11 +87,28 @@ class SessionManager:
                 self.repository.invalidate_sessions()
             logger.info("Chartink session cleared")
 
-    def require_valid_session(self) -> None:
-        """Raise if cookies are missing or the session is not valid (no browser login)."""
+    def ensure_authenticated(self) -> None:
+        """Validate session; optionally run automated browser login when configured."""
         self.load_cookies()
-        if not self.validate_session():
-            raise AuthenticationError(NOT_AUTHENTICATED_MESSAGE)
+        if self.validate_session():
+            return
+        if self._can_auto_login():
+            logger.info("Session invalid — attempting automated Chartink login")
+            try:
+                self.auto_reauthenticate()
+                if self.validate_session():
+                    logger.info("Automated Chartink login succeeded")
+                    return
+            except AuthenticationError as exc:
+                logger.warning("Automated login failed: {}", exc)
+        raise AuthenticationError(NOT_AUTHENTICATED_MESSAGE)
+
+    def _can_auto_login(self) -> bool:
+        return bool(
+            self.settings.chartink_auto_login
+            and self.settings.chartink_email
+            and self.settings.chartink_password
+        )
 
     def validate_session(self) -> bool:
         """Check whether the current session is authenticated."""
@@ -180,13 +195,26 @@ class SessionManager:
             return self._cookies
         return self.login()
 
-    def log_startup_auto_login_skipped(self) -> None:
-        """Log that browser login was not attempted during application startup."""
-        logger.info(
-            "Startup auto-login skipped (CHARTINK_STARTUP_AUTO_LOGIN=false). "
-            "Session validation remains available; use POST /refresh-session or "
-            "scripts/login_test.py to authenticate."
-        )
+    def try_startup_login(self) -> bool:
+        """Attempt login on startup when configured. Returns True if session is valid."""
+        if not self.settings.chartink_startup_auto_login:
+            logger.info("Startup auto-login disabled (CHARTINK_STARTUP_AUTO_LOGIN=false)")
+            return self.validate_session()
+        if not self._can_auto_login():
+            logger.warning(
+                "CHARTINK_EMAIL/PASSWORD not set — set them for automated login"
+            )
+            return self.validate_session()
+        if self.validate_session():
+            logger.info("Existing Chartink session is valid")
+            return True
+        logger.info("No valid session — running startup automated login")
+        try:
+            self.auto_reauthenticate()
+            return self.validate_session()
+        except Exception as exc:
+            logger.warning("Startup automated login failed (non-fatal): {}", exc)
+            return False
 
     def get_cookies(self) -> dict[str, str]:
         """Return current cookies, loading from disk if needed."""
@@ -217,62 +245,40 @@ class SessionManager:
         with self.get_http_client() as client:
             return client.get(url)
 
-    def _browser_login(self, email: str, password: str) -> dict[str, str]:
-        cookies: dict[str, str] = {}
+    def _browser_login_subprocess(self, email: str, password: str) -> dict[str, str]:
+        """Run sync Playwright in a child process (isolated from asyncio)."""
+        worker = Path(__file__).resolve().parent / "browser_login_worker.py"
+        timeout_sec = int(self.settings.playwright_timeout_ms / 1000) + 60
         try:
-            with sync_playwright() as playwright:
-                browser = playwright.chromium.launch(
-                    headless=self.settings.playwright_headless
-                )
-                context = browser.new_context(
-                    user_agent=(
-                        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
-                        "AppleWebKit/537.36 (KHTML, like Gecko) "
-                        "Chrome/122.0.0.0 Safari/537.36"
-                    )
-                )
-                page = context.new_page()
-                page.set_default_timeout(self.settings.playwright_timeout_ms)
-                page.goto(f"{self.base_url}/login", wait_until="domcontentloaded")
+            proc = subprocess.run(
+                [sys.executable, str(worker), email, password],
+                capture_output=True,
+                text=True,
+                timeout=timeout_sec,
+                cwd=str(PROJECT_ROOT),
+                check=False,
+            )
+        except subprocess.TimeoutExpired as exc:
+            raise AuthenticationError(
+                f"Browser login timed out after {timeout_sec}s"
+            ) from exc
 
-                page.fill("#login-email", email)
-                page.fill("#login-password", password)
+        if proc.returncode != 0:
+            detail = proc.stderr.strip() or proc.stdout.strip() or "unknown error"
+            try:
+                err_payload = json.loads(detail)
+                detail = err_payload.get("error", detail)
+            except json.JSONDecodeError:
+                pass
+            raise AuthenticationError(f"Browser login failed: {detail}")
 
-                login_btn = page.get_by_role("button", name="Log in")
-                if login_btn.count() > 0:
-                    login_btn.click()
-                else:
-                    page.locator("#login-password").press("Enter")
+        try:
+            payload = json.loads(proc.stdout)
+        except json.JSONDecodeError as exc:
+            raise AuthenticationError("Browser login returned invalid JSON") from exc
 
-                try:
-                    page.wait_for_url(
-                        lambda url: "/login" not in url,
-                        timeout=self.settings.playwright_timeout_ms,
-                    )
-                except PlaywrightTimeoutError:
-                    if "/login" in page.url:
-                        raise AuthenticationError(
-                            "Login did not complete. Chartink uses reCAPTCHA — "
-                            "set PLAYWRIGHT_HEADLESS=false in .env and run login_test "
-                            "again to solve it in the browser window."
-                        ) from None
-
-                for cookie in context.cookies():
-                    cookies[cookie["name"]] = cookie["value"]
-
-                try:
-                    csrf_meta = page.locator("meta[name='csrf-token']").first
-                    if csrf_meta.count():
-                        self._csrf_token = csrf_meta.get_attribute("content")
-                except Exception:
-                    pass
-
-                browser.close()
-        except AuthenticationError:
-            raise
-        except Exception as exc:
-            raise AuthenticationError(f"Browser login failed: {exc}") from exc
-
-        if "ci_session" not in cookies:
-            logger.warning("ci_session cookie not found; session may be incomplete")
+        cookies = {k: str(v) for k, v in payload.get("cookies", {}).items()}
+        self._csrf_token = payload.get("csrf_token")
+        if not cookies:
+            raise AuthenticationError("Browser login returned no cookies")
         return cookies

@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import asyncio
+import contextlib
 import sys
 from contextlib import asynccontextmanager
 from pathlib import Path
@@ -72,38 +74,30 @@ async def lifespan(app: FastAPI):
     session_manager = get_session_manager()
     session_manager.load_cookies()
 
-    if settings.chartink_startup_auto_login:
-        if settings.chartink_email and settings.chartink_password:
-            if not session_manager.validate_session():
-                logger.info("No valid session found, attempting startup auto-login")
+    refresh_task: asyncio.Task | None = None
+    if settings.chartink_auto_login and settings.session_refresh_interval_minutes > 0:
+
+        async def _periodic_session_refresh() -> None:
+            interval = settings.session_refresh_interval_minutes * 60
+            while True:
+                await asyncio.sleep(interval)
                 try:
-                    session_manager.auto_reauthenticate()
+                    await asyncio.to_thread(session_manager.refresh_session)
                 except Exception as exc:
-                    logger.warning(
-                        "Startup auto-login failed (non-fatal, service will continue): {}",
-                        exc,
-                    )
-            else:
-                logger.info("Existing Chartink session is valid")
-        else:
-            logger.warning(
-                "CHARTINK_EMAIL/PASSWORD not set — login required via POST /refresh-session"
-            )
-    else:
-        session_manager.log_startup_auto_login_skipped()
-        try:
-            if session_manager.validate_session():
-                logger.info("Loaded Chartink session cookies are valid")
-            elif settings.chartink_email:
-                logger.warning(
-                    "Chartink session invalid or missing — authenticate via "
-                    "POST /refresh-session or upload cookies to the persistent disk"
-                )
-        except Exception as exc:
-            logger.warning(
-                "Session validation failed on startup (non-fatal): {}", exc
-            )
+                    logger.warning("Background session refresh failed: {}", exc)
+
+        refresh_task = asyncio.create_task(_periodic_session_refresh())
+
+    try:
+        await asyncio.to_thread(session_manager.try_startup_login)
+    except Exception as exc:
+        logger.warning("Startup session setup failed (non-fatal): {}", exc)
+
     yield
+    if refresh_task is not None:
+        refresh_task.cancel()
+        with contextlib.suppress(asyncio.CancelledError):
+            await refresh_task
     logger.info("Shutting down {}", settings.app_name)
 
 
