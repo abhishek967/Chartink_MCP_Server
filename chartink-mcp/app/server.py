@@ -66,7 +66,7 @@ def create_mcp() -> FastMCP:
 
 
 mcp = create_mcp()
-# Streamable HTTP at /mcp (ChatGPT, Claude). Route is /mcp on the sub-app.
+# Streamable HTTP at /mcp (sub-app route /mcp, mounted at app root).
 mcp_http_app = mcp.http_app(transport="streamable-http", path="/mcp")
 
 
@@ -135,7 +135,7 @@ def create_app() -> FastAPI:
     app.include_router(health_router)
     app.include_router(atlas_router)
     app.include_router(webhook_router)
-    # Mount at root so the MCP route is exactly /mcp (no /mcp/ trailing-slash redirect).
+    # Mount at root; MCP lives at /mcp. REST routes are registered first and take precedence.
     app.mount("", mcp_http_app)
     return app
 

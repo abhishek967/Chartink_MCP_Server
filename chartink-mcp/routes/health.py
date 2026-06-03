@@ -72,6 +72,16 @@ def list_watchlists(client: ChartinkClientDep) -> list[dict[str, Any]]:
     return client.get_watchlists(sync_db=True)
 
 
+@router.get("/refresh-session")
+def refresh_session_info() -> dict[str, str]:
+    """Hint when opened in a browser — login requires POST."""
+    return {
+        "message": "Use POST on this URL to refresh the Chartink session.",
+        "method": "POST",
+        "url": "/refresh-session",
+    }
+
+
 @router.post("/refresh-session")
 def refresh_session(session_manager: SessionManagerDep) -> dict[str, Any]:
     """Explicit browser login; may fail on Render (CAPTCHA / Playwright limits)."""
