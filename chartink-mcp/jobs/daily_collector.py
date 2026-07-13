@@ -95,8 +95,17 @@ def main() -> int:
         except Exception as exc:
             logger.warning("Startup login attempt failed (will retry on first scan): {}", exc)
 
+    repository = get_repository()
+    for name, slug in settings.get_collection_scan_slugs().items():
+        repository.upsert_scan(
+            name=name,
+            slug=slug,
+            url=f"https://chartink.com/screener/{slug}",
+        )
+        logger.info("Seeded scan mapping: {} -> {}", name, slug)
+
     service = CollectionService(
-        repository=get_repository(),
+        repository=repository,
         chartink_provider=ChartinkProvider(get_chartink_client()),
         marketsmith_provider=MarketSmithProvider(),
         scan_delay_seconds=settings.collection_scan_delay_seconds,

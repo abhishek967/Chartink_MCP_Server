@@ -82,6 +82,7 @@ class Settings(BaseSettings):
     )
 
     webhook_secret: str = Field(default="", alias="WEBHOOK_SECRET")
+    cron_secret: str = Field(default="", alias="CRON_SECRET")
     log_level: str = "INFO"
 
     atlas_default_dashboard: str = Field(
@@ -97,6 +98,12 @@ class Settings(BaseSettings):
     collection_scan_delay_seconds: float = Field(
         default=1.0,
         alias="COLLECTION_SCAN_DELAY_SECONDS",
+    )
+    # Optional friendly-name → screener slug map (comma-separated name:slug pairs).
+    # Example: Volume 3X Weekly:volume-3-times-the-average-on-weekly-tf,Volume 3X Daily:volume-2x-daily
+    collection_scan_slugs: str = Field(
+        default="",
+        alias="COLLECTION_SCAN_SLUGS",
     )
 
     @model_validator(mode="after")
@@ -118,6 +125,22 @@ class Settings(BaseSettings):
             for name in self.collection_scan_names.split(",")
             if name.strip()
         ]
+
+    def get_collection_scan_slugs(self) -> dict[str, str]:
+        """Parse COLLECTION_SCAN_SLUGS into {scan_name: slug}."""
+        mapping: dict[str, str] = {}
+        raw = self.collection_scan_slugs.strip()
+        if not raw:
+            return mapping
+        for part in raw.split(","):
+            part = part.strip()
+            if not part or ":" not in part:
+                continue
+            name, slug = part.split(":", 1)
+            name, slug = name.strip(), slug.strip()
+            if name and slug:
+                mapping[name] = slug
+        return mapping
 
 
 @lru_cache

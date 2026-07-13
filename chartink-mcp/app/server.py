@@ -22,6 +22,7 @@ from app.dependencies import get_session_manager  # noqa: E402
 from app.exception_handlers import register_exception_handlers  # noqa: E402
 from routes.atlas import router as atlas_router  # noqa: E402
 from routes.health import router as health_router  # noqa: E402
+from routes.jobs import router as jobs_router  # noqa: E402
 from routes.webhook import router as webhook_router  # noqa: E402
 from storage.database import init_db  # noqa: E402
 from tools.alerts import register_alert_tools  # noqa: E402
@@ -135,6 +136,7 @@ def create_app() -> FastAPI:
     app.include_router(health_router)
     app.include_router(atlas_router)
     app.include_router(webhook_router)
+    app.include_router(jobs_router)
     # Mount at root; MCP lives at /mcp. REST routes are registered first and take precedence.
     app.mount("", mcp_http_app)
     return app

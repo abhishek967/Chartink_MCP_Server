@@ -18,6 +18,7 @@ Production-grade MCP server that gives Claude / ChatGPT authenticated access to 
 | Atlas REST + MCP tools | Working |
 | Existing Claude/ChatGPT MCP flow | Unchanged and working |
 | Phase 1 collector **code** on `main` | Deployed (schema, services, CLI) |
+| Phase 2 Cron wiring | In repo (`render.yaml` + `POST /jobs/collect-daily`) — enable Cron + `CRON_SECRET` in dashboard |
 
 ### Verified locally (manual Phase 1 test)
 
@@ -31,15 +32,14 @@ Production-grade MCP server that gives Claude / ChatGPT authenticated access to 
 **DB path (local):** `chartink-mcp/data/chartink.db`  
 **DB path (Render default today):** `/tmp/chartink.db` (ephemeral unless you mount a persistent disk + set `DATA_DIR`)
 
-### Not live / not finished yet
+### Not finished yet / dashboard steps
 
 | Item | Notes |
 |------|--------|
-| Render Cron (Phase 2) | Not automated yet — run collector manually first |
-| CSRF / cookie-domain fixes | Implemented locally; must be committed + pushed to ship on Render |
-| `COLLECTION_SCAN_NAMES` on Render | Set in Render dashboard before cron/manual collect on the server |
-| Equimantum 90-day as a collector scan | Atlas widget only — no public `/screener/...` URL; omitted from collector env for now |
-| Historical collector rows on Render | Local test data is in `data/chartink.db`, not mirrored to Render |
+| Create/sync Cron service in Render | Use blueprint or add Cron Job manually (`scripts/trigger_collect.sh`) |
+| Set `CRON_SECRET` on web + cron | Required for `POST /jobs/collect-daily` |
+| Persistent `DATA_DIR` | Recommended so history survives deploys |
+| Equimantum 90-day as a collector scan | Atlas widget only — no public `/screener/...` URL yet |
 
 ---
 
@@ -119,6 +119,56 @@ Offline unit check:
 ```
 
 **Phase 2 (next):** Render Cron Job calling the same CLI on a schedule — only after env + persistent `DATA_DIR` are set on Render.
+
+## Phase 2 — Render Cron (daily collection)
+
+Render Cron jobs have a **separate filesystem** from the web service. If Cron ran `python jobs/daily_collector.py` by itself, history would write to a different SQLite than MCP.
+
+**Approach:** Cron HTTP-triggers the web service so data lands in the same `DATA_DIR`:
+
+```text
+Render Cron (weekdays 16:00 IST)
+        │
+        ▼
+POST /jobs/collect-daily   (header X-Cron-Secret)
+        │
+        ▼
+CollectionService → chartink.db on the web instance
+```
+
+### Schedule
+
+| Item | Value |
+|------|--------|
+| Cron expression | `30 10 * * 1-5` |
+| Meaning | Mon–Fri **16:00 IST** (10:30 UTC), after NSE cash close |
+| Entrypoint | `scripts/trigger_collect.sh` → `POST /jobs/collect-daily?idempotent=true` |
+
+Defined in `render.yaml` as service `chartink-daily-collector`.
+
+### Render dashboard checklist
+
+1. Set secrets on the **web** service:
+   - `CHARTINK_EMAIL`, `CHARTINK_PASSWORD`
+   - `CRON_SECRET` (long random string)
+   - `COLLECTION_SCAN_NAMES` (and optional `COLLECTION_SCAN_SLUGS`)
+2. Prefer a **persistent disk** for `DATA_DIR` (e.g. `/var/data`) so cookies + SQLite survive restarts (default blueprint uses `/tmp`).
+3. Create / sync the Cron job from blueprint (`chartink-daily-collector`) with the **same** `CRON_SECRET`.
+4. Manual smoke test:
+
+```bash
+curl -sS -X POST \
+  -H "X-Cron-Secret: $CRON_SECRET" \
+  "https://chartink-mcp-server-2.onrender.com/jobs/collect-daily?idempotent=true"
+```
+
+Idempotent mode skips if a **completed** run already exists for today’s IST date.
+
+### Manual trigger still works
+
+```bash
+.venv/bin/python jobs/daily_collector.py --idempotent-date
+```
 
 ## Quick Start
 

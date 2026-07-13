@@ -1,4 +1,9 @@
-# Render Blueprint — native Python web service (chartink-mcp subdirectory)
+# Render Blueprint — web service + Phase 2 daily collector cron
+#
+# Important: Cron does NOT share /tmp with the web instance. Cron therefore
+# HTTP-triggers POST /jobs/collect-daily on the web service so SQLite history
+# lands next to MCP.
+
 services:
   - type: web
     name: chartink-mcp-server
@@ -14,9 +19,31 @@ services:
         value: "true"
       - key: CHARTINK_STARTUP_AUTO_LOGIN
         value: "true"
+      # Prefer a Render persistent disk mount (e.g. /var/data) in the dashboard.
       - key: DATA_DIR
         value: /tmp
       - key: ENVIRONMENT
         value: production
+      - key: COLLECTION_SCAN_NAMES
+        value: "Volume 3X Weekly,Volume 3X Daily,Trend Template,EPS & Sales Growth"
+      - key: COLLECTION_SCAN_SLUGS
+        value: "Volume 3X Weekly:volume-3-times-the-average-on-weekly-tf,Volume 3X Daily:volume-2x-daily,Trend Template:trend-template,EPS & Sales Growth:eps-sales-growth"
+      - key: COLLECTION_SCAN_DELAY_SECONDS
+        value: "1.0"
       # Set in Render dashboard (secrets):
-      # CHARTINK_EMAIL, CHARTINK_PASSWORD, ATLAS_DEFAULT_DASHBOARD
+      # CHARTINK_EMAIL, CHARTINK_PASSWORD, CRON_SECRET (or WEBHOOK_SECRET),
+      # ATLAS_DEFAULT_DASHBOARD
+
+  # Weekdays 16:00 IST = 10:30 UTC (after NSE cash close)
+  - type: cron
+    name: chartink-daily-collector
+    runtime: python
+    rootDir: chartink-mcp
+    buildCommand: pip install -r requirements.txt
+    schedule: "30 10 * * 1-5"
+    startCommand: bash scripts/trigger_collect.sh
+    envVars:
+      - key: COLLECT_URL
+        value: https://chartink-mcp-server-2.onrender.com/jobs/collect-daily
+      # Set in Render dashboard (secrets) — must match web service CRON_SECRET:
+      # CRON_SECRET
