@@ -83,6 +83,12 @@ class ChartinkClient:
             headers["Referer"] = referer
         if csrf:
             headers["X-CSRF-TOKEN"] = csrf
+        # Laravel validates the XSRF-TOKEN cookie via this header.
+        from urllib.parse import unquote
+
+        xsrf = unquote(self.session_manager.get_cookies().get("XSRF-TOKEN", ""))
+        if xsrf:
+            headers["X-XSRF-TOKEN"] = xsrf
         if data is not None:
             headers["Content-Type"] = "application/x-www-form-urlencoded"
 
@@ -94,10 +100,16 @@ class ChartinkClient:
                 data=data,
                 json=json_body,
             )
+            self.session_manager.sync_cookies_from_client(client)
             if response.status_code in (401, 403):
                 logger.warning("Received {}, refreshing session", response.status_code)
                 self.session_manager.refresh_session()
                 with self.session_manager.get_http_client() as retry_client:
+                    xsrf = unquote(
+                        self.session_manager.get_cookies().get("XSRF-TOKEN", "")
+                    )
+                    if xsrf:
+                        headers["X-XSRF-TOKEN"] = xsrf
                     response = retry_client.request(
                         method,
                         url,
@@ -105,6 +117,7 @@ class ChartinkClient:
                         data=data,
                         json=json_body,
                     )
+                    self.session_manager.sync_cookies_from_client(retry_client)
             return response
 
     def _extract_csrf(self, html: str) -> str:
@@ -118,24 +131,54 @@ class ChartinkClient:
         raise ChartinkClientError("CSRF token not found on page")
 
     def _extract_scan_clause(self, html: str, slug: str) -> str | None:
+        from html import unescape
+
+        text = unescape(html)
         patterns = [
             r"scan_clause['\"]?\s*[:=]\s*['\"](\(.*?\))['\"]",
             r"data-scan-clause=['\"](\(.*?\))['\"]",
             r'"scan_clause"\s*:\s*"(\\\(.*?\\\))"',
+            r'"scan_clause"\s*:\s*"(\( \{cash\} .*?\))"',
+            r"(\( \{cash\} \(.*?\)\s*\))",
         ]
+        candidates: list[str] = []
         for pattern in patterns:
-            match = re.search(pattern, html, re.DOTALL)
-            if match:
+            for match in re.finditer(pattern, text, re.DOTALL):
                 clause = match.group(1).replace("\\", "")
-                return clause
+                if clause.startswith("(") and len(clause) >= 15:
+                    candidates.append(clause)
+        if candidates:
+            return max(candidates, key=len)
 
-        id_match = re.search(r"\{\s*(\d+)\s*\}", html)
+        id_match = re.search(r"\{\s*(\d+)\s*\}", text)
         if id_match:
             scan_id = id_match.group(1)
             return f"( {{{scan_id}}} ( 1=1 ) )"
 
         logger.debug("Could not extract scan_clause for slug={}", slug)
         return None
+
+    def _slugify_scan_name(self, scan_name: str) -> str:
+        return re.sub(r"[^a-z0-9]+", "-", scan_name.lower()).strip("-")
+
+    def _try_direct_screener(self, scan_name: str) -> dict[str, Any] | None:
+        """Resolve by GET /screener/<slug> when scan listing/discovery is empty."""
+        slug = self._slugify_scan_name(scan_name)
+        if not slug:
+            return None
+        url = f"{self.base_url}/screener/{slug}"
+        response = self._request("GET", url, referer=url)
+        if response.status_code != 200:
+            return None
+        if not self._extract_scan_clause(response.text, slug):
+            return None
+        return {
+            "name": scan_name,
+            "slug": slug,
+            "url": url,
+            "source": "direct",
+            "metadata": {"discovered_from": "direct_slug"},
+        }
 
     def get_profile(self) -> dict[str, Any]:
         """Fetch authenticated user profile information."""
@@ -239,14 +282,24 @@ class ChartinkClient:
             if db_scan:
                 return self._scan_to_dict(db_scan)
         matches = self.search_scans(scan_name)
-        if not matches:
-            all_scans = self.get_all_scans()
-            slug = scan_name.lower().replace(" ", "-")
-            direct = next((s for s in all_scans if s["slug"] == slug), None)
-            if direct:
-                return direct
-            raise ChartinkClientError(f"Scan not found: {scan_name}")
-        return matches[0]
+        if matches:
+            return matches[0]
+        all_scans = self.get_all_scans()
+        slug = self._slugify_scan_name(scan_name)
+        direct = next((s for s in all_scans if s["slug"] == slug), None)
+        if direct:
+            return direct
+        # Chartink listing pages are often empty (JS-rendered); try URL directly.
+        direct_page = self._try_direct_screener(scan_name)
+        if direct_page:
+            if self.repository:
+                self.repository.upsert_scan(
+                    name=direct_page["name"],
+                    slug=direct_page["slug"],
+                    url=direct_page["url"],
+                )
+            return direct_page
+        raise ChartinkClientError(f"Scan not found: {scan_name}")
 
     def run_scan(self, scan_name: str) -> dict[str, Any]:
         """Execute a scan by name and persist results."""
@@ -260,41 +313,104 @@ class ChartinkClient:
         scan_clause: str | None = None,
     ) -> dict[str, Any]:
         """Execute a scan by URL, optionally with explicit scan_clause."""
+        from urllib.parse import unquote
+
         if not scan_url.startswith("http"):
             scan_url = f"{self.base_url}/screener/{scan_url.lstrip('/')}"
 
-        response = self._request("GET", scan_url, referer=scan_url)
-        if response.status_code != 200:
-            raise ChartinkClientError(f"Failed to load scan page: {response.status_code}")
-
+        self._ensure_authenticated()
         slug = urlparse(scan_url).path.rstrip("/").split("/")[-1]
-        clause = scan_clause or self._extract_scan_clause(response.text, slug)
-        if not clause:
-            if self.repository:
+
+        # Keep one httpx client for GET+POST so Set-Cookie (XSRF) stays in the jar.
+        with self.session_manager.get_http_client() as client:
+            response = client.get(
+                scan_url,
+                headers={
+                    "X-Requested-With": "XMLHttpRequest",
+                    "Referer": scan_url,
+                },
+            )
+            self.session_manager.sync_cookies_from_client(client)
+            if response.status_code != 200:
+                raise ChartinkClientError(
+                    f"Failed to load scan page: {response.status_code}"
+                )
+
+            clause = scan_clause or self._extract_scan_clause(response.text, slug)
+            if not clause and self.repository:
                 db_scan = self.repository.get_scan_by_slug(slug)
                 if db_scan and db_scan.scan_clause:
                     clause = db_scan.scan_clause
-        if not clause:
-            raise ChartinkClientError(
-                f"Could not determine scan_clause for {scan_url}. "
-                "Run inspect_chartink.py or provide scan_clause explicitly."
-            )
+            if not clause:
+                raise ChartinkClientError(
+                    f"Could not determine scan_clause for {scan_url}. "
+                    "Run inspect_chartink.py or provide scan_clause explicitly."
+                )
 
-        csrf = self._extract_csrf(response.text)
-        process_response = self._request(
-            "POST",
-            self.KNOWN_ENDPOINTS["screener_process"],
-            referer=scan_url,
-            csrf=csrf,
-            data={"scan_clause": clause},
-        )
-        if process_response.status_code != 200:
-            raise ChartinkClientError(
-                f"Screener process failed: {process_response.status_code} "
-                f"{process_response.text[:200]}"
-            )
+            csrf = self._extract_csrf(response.text)
+            xsrf_values = [
+                cookie.value
+                for cookie in client.cookies.jar
+                if cookie.name == "XSRF-TOKEN"
+            ]
+            xsrf = unquote(xsrf_values[-1] if xsrf_values else "")
+            headers = {
+                "X-Requested-With": "XMLHttpRequest",
+                "Referer": scan_url,
+                "X-CSRF-TOKEN": csrf,
+                "Content-Type": "application/x-www-form-urlencoded",
+                "Accept": "application/json, text/javascript, */*; q=0.01",
+            }
+            if xsrf:
+                headers["X-XSRF-TOKEN"] = xsrf
 
-        payload = process_response.json()
+            process_url = f"{self.base_url}{self.KNOWN_ENDPOINTS['screener_process']}"
+            process_response = client.post(
+                process_url,
+                headers=headers,
+                data={"scan_clause": clause, "_token": csrf},
+            )
+            self.session_manager.sync_cookies_from_client(client)
+
+            if process_response.status_code == 419:
+                response = client.get(
+                    scan_url,
+                    headers={
+                        "X-Requested-With": "XMLHttpRequest",
+                        "Referer": scan_url,
+                    },
+                )
+                self.session_manager.sync_cookies_from_client(client)
+                csrf = self._extract_csrf(response.text)
+                clause = (
+                    scan_clause
+                    or self._extract_scan_clause(response.text, slug)
+                    or clause
+                )
+                xsrf_values = [
+                    cookie.value
+                    for cookie in client.cookies.jar
+                    if cookie.name == "XSRF-TOKEN"
+                ]
+                xsrf = unquote(xsrf_values[-1] if xsrf_values else "")
+                headers["X-CSRF-TOKEN"] = csrf
+                if xsrf:
+                    headers["X-XSRF-TOKEN"] = xsrf
+                process_response = client.post(
+                    process_url,
+                    headers=headers,
+                    data={"scan_clause": clause, "_token": csrf},
+                )
+                self.session_manager.sync_cookies_from_client(client)
+
+            if process_response.status_code != 200:
+                raise ChartinkClientError(
+                    f"Screener process failed: {process_response.status_code} "
+                    f"{process_response.text[:200]}"
+                )
+
+            payload = process_response.json()
+
         data = payload.get("data", [])
         records_total = payload.get("recordsTotal", len(data))
         name = scan_name or slug.replace("-", " ").title()

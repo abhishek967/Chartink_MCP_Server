@@ -223,11 +223,25 @@ class SessionManager:
                 self.load_cookies()
             return dict(self._cookies)
 
+    def merge_cookies(self, cookies: dict[str, str]) -> None:
+        """Merge cookies (e.g. rotated XSRF after a page GET) into the live session."""
+        if not cookies:
+            return
+        with self._lock:
+            self._cookies.update({k: str(v) for k, v in cookies.items() if v is not None})
+
+    def sync_cookies_from_client(self, client: httpx.Client) -> None:
+        """Pull the httpx cookie jar back into session state after a request."""
+        # Prefer the last value when the jar contains duplicates (common for XSRF).
+        jar_cookies: dict[str, str] = {}
+        for cookie in client.cookies.jar:
+            jar_cookies[cookie.name] = cookie.value
+        self.merge_cookies(jar_cookies)
+
     def get_http_client(self) -> httpx.Client:
         """Build an httpx client with current session cookies."""
         cookies = self.get_cookies()
-        return httpx.Client(
-            cookies=cookies,
+        client = httpx.Client(
             timeout=self.settings.request_timeout_seconds,
             headers={
                 "User-Agent": (
@@ -240,6 +254,16 @@ class SessionManager:
             },
             follow_redirects=True,
         )
+        # Bind auth cookies to chartink.com so httpx does not accumulate
+        # duplicate nameless-domain entries that break Laravel CSRF checks.
+        host = "chartink.com"
+        for name, value in cookies.items():
+            if not value:
+                continue
+            if name.startswith("_ga") or name.startswith("_GRECAPTCHA"):
+                continue
+            client.cookies.set(name, str(value), domain=host, path="/")
+        return client
 
     def _http_get(self, url: str) -> httpx.Response:
         with self.get_http_client() as client:

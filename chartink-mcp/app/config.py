@@ -14,9 +14,8 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
 
-def get_data_dir() -> Path:
-    """Writable storage root: DATA_DIR env, else /tmp (Render-safe)."""
-    raw = os.getenv("DATA_DIR", "/tmp")
+def ensure_writable_data_dir(raw: str | Path) -> Path:
+    """Resolve and ensure a writable data directory (Render-safe fallback to /tmp)."""
     data_dir = Path(raw)
     if not data_dir.is_absolute():
         data_dir = PROJECT_ROOT / data_dir
@@ -31,6 +30,11 @@ def get_data_dir() -> Path:
         fallback.mkdir(parents=True, exist_ok=True)
         logger.warning("DATA_DIR {} not writable ({}); using {}", data_dir, exc, fallback)
         return fallback.resolve()
+
+
+def get_data_dir() -> Path:
+    """Writable storage root: process DATA_DIR env, else /tmp."""
+    return ensure_writable_data_dir(os.getenv("DATA_DIR", "/tmp"))
 
 
 class Settings(BaseSettings):
@@ -97,7 +101,9 @@ class Settings(BaseSettings):
 
     @model_validator(mode="after")
     def resolve_storage_paths(self) -> Self:
-        self.data_dir = get_data_dir()
+        # Prefer OS env; otherwise honor DATA_DIR from .env via Settings field.
+        raw = os.getenv("DATA_DIR") or str(self.data_dir)
+        self.data_dir = ensure_writable_data_dir(raw)
         self.cookies_file = self.data_dir / "cookies.json"
         self.findings_file = self.data_dir / "inspection_findings.json"
         self.database_url = f"sqlite:///{self.data_dir / 'chartink.db'}"

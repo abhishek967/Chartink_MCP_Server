@@ -1,33 +1,124 @@
 # Chartink Intelligence MCP
 
-Production-grade MCP server that gives ChatGPT (and other MCP clients) authenticated access to your Chartink account — scans, alerts, watchlists, and cross-scan market analysis.
+Production-grade MCP server that gives Claude / ChatGPT authenticated access to your Chartink account — Atlas dashboards, scans, alerts, watchlists, and cross-scan market analysis — plus a **Phase 1 daily market collector** that writes historical signals into SQLite.
+
+**Live app:** [https://chartink-mcp-server-2.onrender.com](https://chartink-mcp-server-2.onrender.com)  
+**MCP URL:** `https://chartink-mcp-server-2.onrender.com/mcp` (Streamable HTTP, no OAuth)
+
+---
+
+## What has been done (status)
+
+### Live on Render today
+
+| Area | Status |
+|------|--------|
+| FastAPI + FastMCP server | Live (`/health` → ok) |
+| Chartink session / cookies | Authenticated |
+| Atlas REST + MCP tools | Working |
+| Existing Claude/ChatGPT MCP flow | Unchanged and working |
+| Phase 1 collector **code** on `main` | Deployed (schema, services, CLI) |
+
+### Verified locally (manual Phase 1 test)
+
+| Check | Result |
+|-------|--------|
+| Collector CLI `jobs/daily_collector.py` | Ran successfully (4/4 scans) |
+| SQLite writes | `collection_runs` + `market_signals` (783 rows on test day) |
+| Duplicate prevention `--idempotent-date` | Skips if a completed run already exists for that date |
+| MCP still healthy after collector | Confirmed against live `/mcp` |
+
+**DB path (local):** `chartink-mcp/data/chartink.db`  
+**DB path (Render default today):** `/tmp/chartink.db` (ephemeral unless you mount a persistent disk + set `DATA_DIR`)
+
+### Not live / not finished yet
+
+| Item | Notes |
+|------|--------|
+| Render Cron (Phase 2) | Not automated yet — run collector manually first |
+| CSRF / cookie-domain fixes | Implemented locally; must be committed + pushed to ship on Render |
+| `COLLECTION_SCAN_NAMES` on Render | Set in Render dashboard before cron/manual collect on the server |
+| Equimantum 90-day as a collector scan | Atlas widget only — no public `/screener/...` URL; omitted from collector env for now |
+| Historical collector rows on Render | Local test data is in `data/chartink.db`, not mirrored to Render |
+
+---
 
 ## Architecture
 
 ```
-Chartink Client Layer
-        ↓
-Session Manager (Playwright login + cookie persistence)
-        ↓
-Storage Layer (SQLite + repository pattern)
-        ↓
-Analysis Layer (conviction scoring, sector leaders)
-        ↓
-MCP Server (FastMCP) + FastAPI REST
-        ↓
-ChatGPT / MCP Clients
+Claude / ChatGPT (MCP)          Cron / CLI (Phase 2)
+         │                              │
+         ▼                              ▼
+   FastMCP /mcp                 jobs/daily_collector.py
+         │                              │
+         └──────────┬───────────────────┘
+                    ▼
+         Chartink client + Atlas client
+                    │
+         Session Manager (Playwright + cookies)
+                    │
+         SQLite (chartink.db) — scans, atlas cache, collection_runs, market_signals
 ```
 
 ## Features
 
-- Browser-based Chartink login with persistent `ci_session` cookies
+- Browser-based Chartink login with persistent session cookies
 - Automatic session validation and re-authentication
+- Atlas dashboard run / high-conviction stocks (MCP + REST)
 - Scan discovery, execution, and historical result storage
 - Alerts and watchlist sync
 - Cross-scan conviction scoring and market summaries
-- MCP tools + resources for ChatGPT integration
-- FastAPI REST endpoints for health, scans, and webhooks
-- Docker-ready for Render/Railway deployment
+- **Phase 1:** standalone daily collector → `collection_runs` / `market_signals`
+- MCP tools + resources for Claude / ChatGPT
+- FastAPI REST endpoints for health, Atlas, scans, and webhooks
+- Render-ready (native Python build via `scripts/render_build.sh`)
+
+## Phase 1 — Daily market collector
+
+Independent of MCP. Reuses Chartink session + services and writes provider-agnostic scores into SQLite.
+
+### Env
+
+```env
+DATA_DIR=data
+COLLECTION_SCAN_NAMES=Volume 3X Weekly,Volume 3X Daily,Trend Template,EPS & Sales Growth
+COLLECTION_SCAN_DELAY_SECONDS=1.0
+CHARTINK_EMAIL=...
+CHARTINK_PASSWORD=...
+```
+
+Scan names must resolve to Chartink **screener** pages (or rows already in the `scans` table). Atlas widget names alone are not enough.
+
+### Run manually
+
+```bash
+cd chartink-mcp
+.venv/bin/python jobs/daily_collector.py
+.venv/bin/python jobs/daily_collector.py --idempotent-date
+.venv/bin/python jobs/daily_collector.py --scan-names "Trend Template,EPS & Sales Growth"
+```
+
+### Verify SQLite
+
+```bash
+sqlite3 data/chartink.db
+.tables
+SELECT COUNT(*) FROM market_signals;
+SELECT symbol, final_score, scan_count FROM market_signals ORDER BY final_score DESC LIMIT 10;
+```
+
+### Schema (high level)
+
+- `collection_runs` — one row per collection job (`run_uuid`, `collection_date`, status, counts)
+- `market_signals` — one row per symbol per run (`symbol`, `triggered_scans`, `scan_count`, `final_score`, …)
+
+Offline unit check:
+
+```bash
+.venv/bin/python scripts/test_phase1_collector.py
+```
+
+**Phase 2 (next):** Render Cron Job calling the same CLI on a schedule — only after env + persistent `DATA_DIR` are set on Render.
 
 ## Quick Start
 
@@ -37,6 +128,7 @@ ChatGPT / MCP Clients
 cd chartink-mcp
 cp .env.example .env
 # Edit .env with your CHARTINK_EMAIL and CHARTINK_PASSWORD
+# Set DATA_DIR=data and COLLECTION_SCAN_NAMES for the collector
 ```
 
 ### 2. Run with Docker
@@ -289,34 +381,34 @@ pip install -r requirements.txt && playwright install --with-deps chromium
 ```
 chartink-mcp/
 ├── app/
-│   ├── server.py          # FastAPI + FastMCP entrypoint
-│   ├── config.py          # Settings from .env
-│   └── dependencies.py    # DI container
+│   ├── server.py              # FastAPI + FastMCP entrypoint
+│   ├── config.py              # Settings from .env (DATA_DIR, COLLECTION_SCAN_NAMES)
+│   └── dependencies.py
 ├── clients/
-│   └── chartink_client.py # Reverse-engineered HTTP client
+│   ├── chartink_client.py     # Screener HTTP + CSRF-safe session
+│   └── atlas_client.py
 ├── auth/
-│   └── session_manager.py # Playwright login + cookies
+│   └── session_manager.py     # Playwright login + domain-scoped cookies
+├── providers/                 # Phase 1: Chartink (+ MarketSmith stub)
+├── services/
+│   ├── collection_service.py  # Daily collection orchestration
+│   └── score_engine.py
+├── jobs/
+│   └── daily_collector.py     # CLI collector (no MCP dependency)
 ├── storage/
 │   ├── database.py
-│   ├── models.py
+│   ├── models.py              # includes CollectionRun, MarketSignal
 │   └── repository.py
 ├── analysis/
-│   └── market_analysis.py
-├── tools/
-│   ├── scans.py
-│   ├── watchlists.py
-│   ├── alerts.py
-│   └── analytics.py
-├── routes/
-│   ├── health.py
-│   └── webhook.py
+├── tools/                     # MCP tool registrations
+├── routes/                    # REST: health, atlas, webhook
 ├── scripts/
-│   ├── inspect_chartink.py
-│   ├── login_test.py
-│   └── scan_test.py
+│   ├── test_phase1_collector.py
+│   ├── render_build.sh
+│   └── ...
+├── data/                      # Local DATA_DIR (cookies + chartink.db) — do not commit secrets
 ├── requirements.txt
 ├── Dockerfile
-├── docker-compose.yml
 └── .env.example
 ```
 
@@ -325,19 +417,19 @@ chartink-mcp/
 Chartink has no public API. This server reverse-engineers the authenticated web flow:
 
 1. **Login** — Playwright fills the login form at `/login` and captures session cookies
-2. **CSRF** — Each screener page embeds a CSRF token in a `<meta>` tag
-3. **Scan execution** — POST to `/screener/process` with `scan_clause` payload
-4. **Session reuse** — Cookies persist in `data/cookies.json` and SQLite between restarts
-5. **Auto-refresh** — On-demand via `POST /refresh-session` (startup auto-login is off by default)
+2. **CSRF** — Screener pages embed a CSRF token; requests must send matching `X-CSRF-TOKEN` / `X-XSRF-TOKEN` with cookies bound to `chartink.com`
+3. **Scan execution** — POST to `/screener/process` with `scan_clause`
+4. **Session reuse** — Cookies persist under `DATA_DIR` (local: `data/`, Render: often `/tmp` unless you set a disk)
+5. **Auto-refresh** — `POST /refresh-session` (may hit CAPTCHA on some IPs)
 
 Run `scripts/inspect_chartink.py` to discover endpoints and scan metadata for your account.
 
 ## Security Notes
 
 - Never commit `.env` with real credentials
-- Use Render/Railway secret environment variables
+- Use Render secret environment variables
 - Set `WEBHOOK_SECRET` for webhook authentication
-- Chartink may show CAPTCHA on login — run inspection locally first if needed
+- Chartink may show CAPTCHA on login — prefer persisted cookies or local login first
 
 ## License
 
