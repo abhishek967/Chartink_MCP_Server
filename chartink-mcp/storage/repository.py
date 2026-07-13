@@ -11,7 +11,9 @@ from sqlalchemy.orm import Session, sessionmaker
 from storage.models import (
     Alert,
     AnalysisCache,
+    CollectionRun,
     HistoricalResult,
+    MarketSignal,
     Scan,
     ScanResult,
     SessionRecord,
@@ -298,6 +300,138 @@ class ChartinkRepository:
             session.commit()
             session.refresh(cache)
             return cache
+
+    def create_collection_run(
+        self,
+        run_uuid: str,
+        collection_date: str,
+        scans_configured: list[str],
+    ) -> CollectionRun:
+        with self._session() as session:
+            run = CollectionRun(
+                run_uuid=run_uuid,
+                collection_date=collection_date,
+                status="running",
+                scans_configured=list(scans_configured),
+            )
+            session.add(run)
+            session.commit()
+            session.refresh(run)
+            return run
+
+    def get_completed_run_for_date(self, collection_date: str) -> CollectionRun | None:
+        with self._session() as session:
+            stmt = (
+                select(CollectionRun)
+                .where(
+                    CollectionRun.collection_date == collection_date,
+                    CollectionRun.status == "completed",
+                )
+                .order_by(desc(CollectionRun.completed_at))
+                .limit(1)
+            )
+            return session.scalar(stmt)
+
+    def complete_collection_run(
+        self,
+        run_id: int,
+        *,
+        scans_succeeded: int,
+        scans_failed: int,
+        stocks_saved: int,
+        execution_seconds: float,
+        summary: dict[str, Any],
+        error_message: str | None = None,
+        status: str = "completed",
+    ) -> CollectionRun | None:
+        with self._session() as session:
+            run = session.get(CollectionRun, run_id)
+            if run is None:
+                return None
+            run.status = status
+            run.completed_at = utcnow()
+            run.scans_succeeded = scans_succeeded
+            run.scans_failed = scans_failed
+            run.stocks_saved = stocks_saved
+            run.execution_seconds = execution_seconds
+            run.summary_json = summary
+            run.error_message = error_message
+            session.commit()
+            session.refresh(run)
+            return run
+
+    def save_market_signal(
+        self,
+        run_id: int,
+        *,
+        symbol: str,
+        company_name: str | None,
+        sector: str | None,
+        close_price: float | None,
+        triggered_scans: list[str],
+        scan_count: int,
+        score_breakdown: dict[str, Any],
+        final_score: float,
+        rs_rating: int | None = None,
+        eps_rating: int | None = None,
+        composite_rating: int | None = None,
+        industry_rank: int | None = None,
+        accumulation_distribution: str | None = None,
+        pattern_type: str | None = None,
+        market_outlook: str | None = None,
+    ) -> MarketSignal | None:
+        """Insert a market signal; skip if (run_id, symbol) already exists."""
+        symbol = symbol.upper().strip()
+        with self._session() as session:
+            existing = session.scalar(
+                select(MarketSignal).where(
+                    MarketSignal.run_id == run_id,
+                    MarketSignal.symbol == symbol,
+                )
+            )
+            if existing is not None:
+                return None
+            signal = MarketSignal(
+                run_id=run_id,
+                symbol=symbol,
+                company_name=company_name,
+                sector=sector,
+                close_price=close_price,
+                triggered_scans=list(triggered_scans),
+                scan_count=scan_count,
+                score_breakdown=score_breakdown,
+                final_score=final_score,
+                rs_rating=rs_rating,
+                eps_rating=eps_rating,
+                composite_rating=composite_rating,
+                industry_rank=industry_rank,
+                accumulation_distribution=accumulation_distribution,
+                pattern_type=pattern_type,
+                market_outlook=market_outlook,
+            )
+            session.add(signal)
+            session.commit()
+            session.refresh(signal)
+            return signal
+
+    def count_signals_for_run(self, run_id: int) -> int:
+        with self._session() as session:
+            return len(
+                list(
+                    session.scalars(
+                        select(MarketSignal).where(MarketSignal.run_id == run_id)
+                    ).all()
+                )
+            )
+
+    def list_signals_for_run(self, run_id: int) -> list[MarketSignal]:
+        with self._session() as session:
+            stmt = (
+                select(MarketSignal)
+                .where(MarketSignal.run_id == run_id)
+                .order_by(desc(MarketSignal.final_score))
+            )
+            return list(session.scalars(stmt).all())
 
 
 def _normalize_utc(dt: datetime | None) -> datetime | None:

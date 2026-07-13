@@ -159,3 +159,69 @@ class HistoricalResult(Base):
     captured_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
 
     scan_result: Mapped[ScanResult | None] = relationship(back_populates="historical")
+
+
+class CollectionRun(Base):
+    """One daily (or on-demand) market collection execution."""
+
+    __tablename__ = "collection_runs"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    run_uuid: Mapped[str] = mapped_column(String(64), unique=True, nullable=False, index=True)
+    collection_date: Mapped[str] = mapped_column(String(32), nullable=False, index=True)
+    started_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+    completed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    status: Mapped[str] = mapped_column(String(32), nullable=False, default="running")
+    scans_configured: Mapped[list | None] = mapped_column(JSON)
+    scans_succeeded: Mapped[int] = mapped_column(Integer, default=0)
+    scans_failed: Mapped[int] = mapped_column(Integer, default=0)
+    stocks_saved: Mapped[int] = mapped_column(Integer, default=0)
+    execution_seconds: Mapped[float | None] = mapped_column(Float)
+    summary_json: Mapped[dict | None] = mapped_column(JSON)
+    error_message: Mapped[str | None] = mapped_column(Text)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+
+    signals: Mapped[list["MarketSignal"]] = relationship(
+        "MarketSignal", back_populates="run"
+    )
+
+
+class MarketSignal(Base):
+    """Merged cross-scan stock signal for a single collection run."""
+
+    __tablename__ = "market_signals"
+    __table_args__ = (
+        UniqueConstraint("run_id", "symbol", name="uq_market_signals_run_symbol"),
+    )
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    run_id: Mapped[int] = mapped_column(
+        ForeignKey("collection_runs.id"), nullable=False, index=True
+    )
+    symbol: Mapped[str] = mapped_column(String(64), nullable=False, index=True)
+    company_name: Mapped[str | None] = mapped_column(String(255))
+    sector: Mapped[str | None] = mapped_column(String(256))
+    close_price: Mapped[float | None] = mapped_column(Float)
+    triggered_scans: Mapped[list | None] = mapped_column(JSON)
+    scan_count: Mapped[int] = mapped_column(Integer, default=0)
+    score_breakdown: Mapped[dict | None] = mapped_column(JSON)
+    final_score: Mapped[float] = mapped_column(Float, default=0.0)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+
+    # Future MarketSmith (nullable)
+    rs_rating: Mapped[int | None] = mapped_column(Integer)
+    eps_rating: Mapped[int | None] = mapped_column(Integer)
+    composite_rating: Mapped[int | None] = mapped_column(Integer)
+    industry_rank: Mapped[int | None] = mapped_column(Integer)
+    accumulation_distribution: Mapped[str | None] = mapped_column(String(64))
+    pattern_type: Mapped[str | None] = mapped_column(String(128))
+    market_outlook: Mapped[str | None] = mapped_column(String(128))
+
+    # Optional performance tracking (filled by later jobs)
+    return_5d: Mapped[float | None] = mapped_column(Float)
+    return_20d: Mapped[float | None] = mapped_column(Float)
+    return_60d: Mapped[float | None] = mapped_column(Float)
+
+    run: Mapped["CollectionRun"] = relationship(
+        "CollectionRun", back_populates="signals"
+    )

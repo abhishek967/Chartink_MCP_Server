@@ -85,6 +85,16 @@ class Settings(BaseSettings):
         alias="ATLAS_DEFAULT_DASHBOARD",
     )
 
+    # Daily collector: comma-separated Chartink scan names (required for collection).
+    collection_scan_names: str = Field(
+        default="",
+        alias="COLLECTION_SCAN_NAMES",
+    )
+    collection_scan_delay_seconds: float = Field(
+        default=1.0,
+        alias="COLLECTION_SCAN_DELAY_SECONDS",
+    )
+
     @model_validator(mode="after")
     def resolve_storage_paths(self) -> Self:
         self.data_dir = get_data_dir()
@@ -92,6 +102,16 @@ class Settings(BaseSettings):
         self.findings_file = self.data_dir / "inspection_findings.json"
         self.database_url = f"sqlite:///{self.data_dir / 'chartink.db'}"
         return self
+
+    def get_collection_scan_names(self) -> list[str]:
+        """Parse COLLECTION_SCAN_NAMES into a clean list."""
+        if not self.collection_scan_names.strip():
+            return []
+        return [
+            name.strip()
+            for name in self.collection_scan_names.split(",")
+            if name.strip()
+        ]
 
 
 @lru_cache
