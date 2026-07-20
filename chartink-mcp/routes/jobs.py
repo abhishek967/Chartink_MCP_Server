@@ -28,6 +28,47 @@ def _authorized(cron_secret: str | None, webhook_secret: str | None) -> bool:
     return hmac.compare_digest(provided, expected)
 
 
+def _require_job_auth(
+    x_cron_secret: str | None = Header(default=None, alias="X-Cron-Secret"),
+    x_webhook_secret: str | None = Header(default=None, alias="X-Webhook-Secret"),
+) -> None:
+    if not _authorized(x_cron_secret, x_webhook_secret):
+        raise HTTPException(status_code=401, detail="Invalid or missing cron secret")
+
+
+def _run_to_dict(run) -> dict[str, Any]:
+    return {
+        "id": run.id,
+        "run_uuid": run.run_uuid,
+        "collection_date": run.collection_date,
+        "status": run.status,
+        "scans_configured": run.scans_configured,
+        "scans_succeeded": run.scans_succeeded,
+        "scans_failed": run.scans_failed,
+        "stocks_saved": run.stocks_saved,
+        "execution_seconds": run.execution_seconds,
+        "started_at": run.started_at.isoformat() if run.started_at else None,
+        "completed_at": run.completed_at.isoformat() if run.completed_at else None,
+        "error_message": run.error_message,
+    }
+
+
+def _signal_to_dict(signal) -> dict[str, Any]:
+    return {
+        "id": signal.id,
+        "run_id": signal.run_id,
+        "symbol": signal.symbol,
+        "company_name": signal.company_name,
+        "sector": signal.sector,
+        "close_price": signal.close_price,
+        "triggered_scans": signal.triggered_scans,
+        "scan_count": signal.scan_count,
+        "final_score": signal.final_score,
+        "score_breakdown": signal.score_breakdown,
+        "created_at": signal.created_at.isoformat() if signal.created_at else None,
+    }
+
+
 def _seed_scan_slugs(repository) -> None:
     """Upsert optional name→slug mappings so friendly COLLECTION_SCAN_NAMES resolve."""
     settings = get_settings()
@@ -97,3 +138,54 @@ def collect_daily(
         raise HTTPException(status_code=502, detail=result)
 
     return result
+
+
+@router.get("/collection-runs")
+def list_collection_runs(
+    collection_date: str | None = None,
+    limit: int = 20,
+    x_cron_secret: str | None = Header(default=None, alias="X-Cron-Secret"),
+    x_webhook_secret: str | None = Header(default=None, alias="X-Webhook-Secret"),
+) -> dict[str, Any]:
+    """List collector runs (secret-protected). Use from /docs with X-Cron-Secret header."""
+    _require_job_auth(x_cron_secret, x_webhook_secret)
+    settings = get_settings()
+    repository = get_repository()
+    runs = repository.list_collection_runs(
+        limit=min(max(limit, 1), 100),
+        collection_date=collection_date or None,
+    )
+    return {
+        "data_dir": str(settings.data_dir),
+        "database": str(settings.data_dir / "chartink.db"),
+        "count": len(runs),
+        "runs": [_run_to_dict(r) for r in runs],
+    }
+
+
+@router.get("/market-signals")
+def list_market_signals(
+    collection_date: str | None = None,
+    run_id: int | None = None,
+    limit: int = 50,
+    offset: int = 0,
+    x_cron_secret: str | None = Header(default=None, alias="X-Cron-Secret"),
+    x_webhook_secret: str | None = Header(default=None, alias="X-Webhook-Secret"),
+) -> dict[str, Any]:
+    """Browse stored market signals (secret-protected). Filter by date or run_id."""
+    _require_job_auth(x_cron_secret, x_webhook_secret)
+    repository = get_repository()
+    rows, total = repository.list_market_signals(
+        collection_date=collection_date or None,
+        run_id=run_id,
+        limit=min(max(limit, 1), 500),
+        offset=max(offset, 0),
+    )
+    return {
+        "total": total,
+        "limit": limit,
+        "offset": offset,
+        "collection_date": collection_date,
+        "run_id": run_id,
+        "signals": [_signal_to_dict(s) for s in rows],
+    }

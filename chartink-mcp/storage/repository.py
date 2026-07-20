@@ -5,7 +5,7 @@ from __future__ import annotations
 from datetime import datetime, timedelta, timezone
 from typing import Any
 
-from sqlalchemy import desc, select
+from sqlalchemy import desc, func, select
 from sqlalchemy.orm import Session, sessionmaker
 
 from storage.models import (
@@ -432,6 +432,45 @@ class ChartinkRepository:
                 .order_by(desc(MarketSignal.final_score))
             )
             return list(session.scalars(stmt).all())
+
+    def list_collection_runs(
+        self,
+        *,
+        limit: int = 20,
+        collection_date: str | None = None,
+    ) -> list[CollectionRun]:
+        with self._session() as session:
+            stmt = select(CollectionRun).order_by(desc(CollectionRun.id)).limit(limit)
+            if collection_date:
+                stmt = stmt.where(CollectionRun.collection_date == collection_date)
+            return list(session.scalars(stmt).all())
+
+    def list_market_signals(
+        self,
+        *,
+        collection_date: str | None = None,
+        run_id: int | None = None,
+        limit: int = 50,
+        offset: int = 0,
+    ) -> tuple[list[MarketSignal], int]:
+        with self._session() as session:
+            stmt = select(MarketSignal).join(
+                CollectionRun, MarketSignal.run_id == CollectionRun.id
+            )
+            if collection_date:
+                stmt = stmt.where(CollectionRun.collection_date == collection_date)
+            if run_id is not None:
+                stmt = stmt.where(MarketSignal.run_id == run_id)
+            count_stmt = select(func.count()).select_from(stmt.subquery())
+            total = session.scalar(count_stmt) or 0
+            rows = list(
+                session.scalars(
+                    stmt.order_by(desc(MarketSignal.final_score))
+                    .offset(offset)
+                    .limit(limit)
+                ).all()
+            )
+            return rows, int(total)
 
 
 def _normalize_utc(dt: datetime | None) -> datetime | None:
